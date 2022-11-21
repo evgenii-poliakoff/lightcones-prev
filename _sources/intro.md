@@ -1,7 +1,7 @@
-# Welcome to LIGHTCONES: A theoretical framework for non-stationary motion of quantum matter 
+# Welcome to the LIGHTCONES project 
 
 
-The
+The aim of the LIGHTCONES project is to develop a universal theoretical and computational framework for the non-stationary motion of quantum matter using the Lieb-Robinson lightcone as a basic concept 
 
 This is a small sample book to give you a feel for how book content is
 structured.
