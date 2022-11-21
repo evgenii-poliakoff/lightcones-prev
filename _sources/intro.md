@@ -2,10 +2,25 @@
 
 The problem of characterizing/computing the nonstationary quantum state is much more difficult than that for the equilibrium state. The reason is that we do not know much about the general structure of nonstationary state.
 
-For example, we know that the equilibrium state is given by the canonical Gibbs density matrix
+For example, we know the general structure of the equilibrium finite-temperature state: the canonical Gibbs density matrix
+
 $$
-\widehat{\rho}=\exp\left(-\beta \widehat{H} \right)
+\widehat{\rho}=\exp\left(-\beta \widehat{H} \right) 
+$$ (gibbs_eq)
+
+This yields the thermodynamic potentials e.g. the  free energy functional 
+
 $$
+F = - \beta^{-1} \ln\left( \textrm{Tr} \widehat{\rho} \right),
+$$
+
+which produce a variational principle 
+
+$$
+    F_{var} = F_{trial} + \left\langle \widehat{H} - \widehat{H}_{trial} \right\rangle \geq F.
+$$
+
+for the trial (approximate) Hamiltonians. This leads to efficient computational procedures in the equilibrium case. Moreover,  the Gibbs distribution in {eq}`gibbs_eq` 
 
 Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
 in regular markdown files (`.md`), you'll write in the same flavor of markdown
