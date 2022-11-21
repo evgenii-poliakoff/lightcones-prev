@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Content with notebooks" href="notebooks.html" />
@@ -377,6 +379,11 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="why-nonstationary-quantum-motion-is-difficult">
 <h1>Why nonstationary quantum motion is difficult?<a class="headerlink" href="#why-nonstationary-quantum-motion-is-difficult" title="Permalink to this headline">#</a></h1>
+<p>The problem of characterizing/computing the nonstationary quantum state is much more difficult than that for the equilibrium state. The reason is that we do not know much about the general structure of nonstationary state.</p>
+<p>For example, we know that the equilibrium state is given by the canonical Gibbs density matrix
+$<span class="math notranslate nohighlight">\(
+\widehat{\rho}=\exp\left(-\beta \widehat{H} \right)
+\)</span>$</p>
 <p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
 in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
 called <strong>MyST Markdown</strong>.

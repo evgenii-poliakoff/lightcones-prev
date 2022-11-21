@@ -1,5 +1,12 @@
 # Why nonstationary quantum motion is difficult?
 
+The problem of characterizing/computing the nonstationary quantum state is much more difficult than that for the equilibrium state. The reason is that we do not know much about the general structure of nonstationary state.
+
+For example, we know that the equilibrium state is given by the canonical Gibbs density matrix
+$$
+\widehat{\rho}=\exp\left(-\beta \widehat{H} \right)
+$$
+
 Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
 in regular markdown files (`.md`), you'll write in the same flavor of markdown
 called **MyST Markdown**.
