@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Content with notebooks" href="lightcone.html" />
+    <link rel="next" title="Variational principles for the Lieb-Robinson lightcone" href="lightcone.html" />
     <link rel="prev" title="Welcome to the LIGHTCONES project" href="welcome.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -123,7 +123,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lightcone.html">
-   Content with notebooks
+   Variational principles for the Lieb-Robinson lightcone
   </a>
  </li>
  <li class="toctree-l1">
@@ -312,38 +312,41 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="why-nonstationary-quantum-motion-is-difficult">
 <h1>Why nonstationary quantum motion is difficult?<a class="headerlink" href="#why-nonstationary-quantum-motion-is-difficult" title="Permalink to this headline">#</a></h1>
-<p>The problem of characterizing/computing the nonstationary quantum state is much more difficult than that for the equilibrium state. The reason is that we do not know much about the general structure of nonstationary state. By “structure” we mean</p>
-<p>For example, we know the general structure of the equilibrium finite-temperature state: the canonical Gibbs density matrix</p>
+<p>It is much more difficult to compute the nonstationary many-particle quantum state than the equilibrium one. The reason is that in the equilibrium we can apriory estimate which degrees of freedom are statistically significant, and which are not. Indeed, in the equilibrium finite-temperature case we have the canonical Gibbs density matrix</p>
 <div class="math notranslate nohighlight" id="equation-gibbs-eq">
 <span class="eqno">(1)<a class="headerlink" href="#equation-gibbs-eq" title="Permalink to this equation">#</a></span>\[
 \widehat{\rho}=\exp\left(-\beta \widehat{H} \right) 
 \]</div>
-<p>This knowledge allows us to:</p>
+<p>This allows us to:</p>
 <ul class="simple">
-<li><p>develop efficient computational schemes. Indeed, by introducing  the thermodynamic potentials e.g. the  free energy functional</p></li>
+<li><p>easily divide the degrees of freedom into the relevant (statistically significant)/irrelevant ones (statistically insignificant). Indeed, the Gibbs distribution tells us that the high-energy degrees of freedom are exponentiallly supressed (irrelevant).</p></li>
+<li><p>develop efficient variational principles to compute the state. Indeed, by introducing  the thermodynamic potentials e.g. the  free energy functional</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 F = - \beta^{-1} \ln\left( \textrm{Tr} \widehat{\rho} \right),
 \]</div>
 <p>we obtain a variational principle</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-free-energy-variational-eq">
+<span class="eqno">(2)<a class="headerlink" href="#equation-free-energy-variational-eq" title="Permalink to this equation">#</a></span>\[
     F_{var} = F_{trial} + \left\langle \widehat{H} - \widehat{H}_{trial} \right\rangle \geq F
 \]</div>
-<p>for the trial (approximate) Hamiltonians.</p>
-<ul class="simple">
-<li><p>divide the degrees of freedom into relevant/irrelevant ones. Indeed, the Gibbs distribution in <a class="reference internal" href="#equation-gibbs-eq">(1)</a> shows that high-energy degrees of freedom are exponentiallly supressed (irrelevant).</p></li>
-</ul>
+<p>for the trial (approximate) Hamiltonians <span class="math notranslate nohighlight">\(\widehat{H}_{trial}\)</span>.  These trial Hamiltonians directly estimate the whole state at a given target temperature. We say therefore that these variational principles are <em>global</em>.</p>
 <p>Compared to this, the formal expression for the nonstationary state</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-realtime-eq">
+<span class="eqno">(3)<a class="headerlink" href="#equation-realtime-eq" title="Permalink to this equation">#</a></span>\[
 \left| \Psi\left(t\right)\right\rangle = \exp(-i t \widehat{H}) \left| \Psi\left(0\right)\right\rangle 
 \]</div>
 <ul class="simple">
-<li><p>does not lead to potentials with <em>global</em> variantional properties</p></li>
-<li><p>does not allow for direct  identification of irrelevant degrees of freedom: for a general quench, different energy scales are coupled.</p></li>
+<li><p>does not allow for apriory estimation of relevant/irrelevant degrees of freedom: for a general quench, different energy scales are coupled. The exponent is an oscillating function of energy, it does not exhibit the exponential decay.</p></li>
+<li><p>does not lead to potentials with <em>global</em> variantional properties.</p></li>
 </ul>
+<p>Indeed, for the last point: the widely employed Dirac-Frenkel/McLachlan variational principle</p>
+<div class="math notranslate nohighlight" id="equation-dirac-frenkel-eq">
+<span class="eqno">(4)<a class="headerlink" href="#equation-dirac-frenkel-eq" title="Permalink to this equation">#</a></span>\[
+    \frac{\delta}{\delta \Psi} \left\Vert i\frac{\partial \Psi}{\partial t} - \widehat{H} \Psi  \right\Vert = 0
+\]</div>
+<p>is local: for each time moment, it merely tries to minimize the local discrepancy between the right and the left-sides of the Schrodinger equation. It knows nothing about what degrees of freedom are relevant at the target time, and how to approximate the whole quantum state. In this respect this variational  principle is much more inferior than <a class="reference internal" href="#equation-free-energy-variational-eq">(2)</a>.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -383,7 +386,7 @@ F = - \beta^{-1} \ln\left( \textrm{Tr} \widehat{\rho} \right),
     <a class='right-next' id="next-link" href="lightcone.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Content with notebooks</p>
+        <p class="prev-next-title">Variational principles for the Lieb-Robinson lightcone</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
