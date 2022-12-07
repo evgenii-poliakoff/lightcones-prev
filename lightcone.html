@@ -342,6 +342,16 @@ title="Print to PDF"
    Example: Interaction quench for qubit (atom) in the waveguide
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom">
+   Lightcone allows us to identify the relevant and irrelevant degrees of freedom
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#find-the-time-of-a-new-incoming-chain-site">
+   Find the time of a new incoming chain site
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -364,6 +374,16 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-interaction-quench-for-qubit-atom-in-the-waveguide">
    Example: Interaction quench for qubit (atom) in the waveguide
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom">
+   Lightcone allows us to identify the relevant and irrelevant degrees of freedom
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#find-the-time-of-a-new-incoming-chain-site">
+   Find the time of a new incoming chain site
   </a>
  </li>
 </ul>
@@ -440,7 +460,7 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
     <span class="k">return</span><span class="p">(</span><span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
 
-<span class="n">Hconst</span> <span class="o">=</span> <span class="n">Eat</span> <span class="o">*</span> <span class="n">sigma_p</span> <span class="o">@</span> <span class="n">sigma_m</span> <span class="o">+</span> <span class="n">sigma_p</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">sigma_m</span> <span class="o">@</span> <span class="n">a_hat_dag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+<span class="n">Hconst</span> <span class="o">=</span> <span class="n">Eat</span> <span class="o">*</span> <span class="n">sigma_p</span> <span class="o">@</span> <span class="n">sigma_m</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">sigma_p</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">sigma_m</span> <span class="o">@</span> <span class="n">a_hat_dag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
     <span class="o">+</span> <span class="n">e</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a_hat_dag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)])</span> \
     <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a_hat_dag</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">a_hat_dag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
 
@@ -466,7 +486,7 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 \[
     i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}\left(t\right)\Psi\left(t\right)
 \]</div>
-<p>and computing the occupations <code> ni[j, i] </code> of the  waveguide sites, <code> ni[j,i] </code> = <span class="math notranslate nohighlight">\( \left\langle\Psi\left(t_i\right)|a_j^{\dagger} a_j|\Psi\left(t_i\right)\right\rangle\)</span>:</p>
+<p>and computing the occupations <code> ni[j, i] </code> of the  waveguide sites, <code> ni[j,i] </code> = <span class="math notranslate nohighlight">\( n_j\left(t\right)=\left\langle\Psi\left(t_i\right)|a_j^{\dagger} a_j|\Psi\left(t_i\right)\right\rangle\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tools</span>
@@ -495,7 +515,7 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
  
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>  <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;occupation of chain site No.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;chain site No.&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="s2">&quot;40&quot;</span><span class="p">,</span> <span class="s2">&quot;60&quot;</span><span class="p">,</span> <span class="s2">&quot;80&quot;</span><span class="p">,</span> <span class="s2">&quot;100&quot;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -506,6 +526,129 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 </div>
 </div>
 <p>We observe the lightcone-like spread of disturbance.</p>
+</section>
+<section id="lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom">
+<h2>Lightcone allows us to identify the relevant and irrelevant degrees of freedom<a class="headerlink" href="#lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom" title="Permalink to this headline">#</a></h2>
+<p>The domain outside the lightcone consists of degrees of freedom which will become significantly excited only in the future. More specifically, for each chain site <span class="math notranslate nohighlight">\(i\)</span> there is a time moment <span class="math notranslate nohighlight">\(t_i\)</span> after which it will become statistically significant for the evolution. We may define a piece-wise continuous function <span class="math notranslate nohighlight">\(m\left(t\right)\)</span> which shows how many sites have coupled to the evolution by the time <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+m(t) = \max\{t_i : t_i &lt;= t\}
+\]</div>
+<p>Then when solving the Schrodinger equation, we can include only a finite number <span class="math notranslate nohighlight">\(m\left(t\right)\)</span> of sites into the Hamiltonian:</p>
+<div class="math notranslate nohighlight">
+\[
+    i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}_m\left(t\right)\Psi\left(t\right)
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0} + h a^{\dagger}_{0} \sigma_{-} + \sum\limits_{i=0}^{m\left(t\right)} (\varepsilon a^{\dagger}_{i} a_{i} + h a^{\dagger}_{i+1} a_{i} + h a^{\dagger}_{i} a_{i+1})  
+\]</div>
+</section>
+<section id="find-the-time-of-a-new-incoming-chain-site">
+<h2>Find the time of a new incoming chain site<a class="headerlink" href="#find-the-time-of-a-new-incoming-chain-site" title="Permalink to this headline">#</a></h2>
+<p>We can find the time <span class="math notranslate nohighlight">\(t_i\)</span> using the results of the preceding computation. We introduce a treshold of significance <span class="math notranslate nohighlight">\(a_{cut}\)</span>. Then the time <span class="math notranslate nohighlight">\(t_i\)</span> is defined as a first time when the occupation of the site <span class="math notranslate nohighlight">\(i\)</span> exceeds the  threshold,</p>
+<div class="math notranslate nohighlight">
+\[
+    n_i\left(t\right) &gt; a_{cut}  
+\]</div>
+<p>Here is the program:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_cut</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">ti</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">ti</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ni</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">a_cut</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">ti</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">ti</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">ti</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;number of coupled modes&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0d1b60da50&gt;]
+</pre></div>
+</div>
+<img alt="_images/lightcone_17_1.png" src="_images/lightcone_17_1.png" />
+</div>
+</div>
+<p>Now let us solve the Schrodinger equation with the full number of modes and compute the
+occupation of the qubit: <code> nq[i] </code>=<span class="math notranslate nohighlight">\(\left\langle\Psi\left(t_i\right)|\sigma_+ \sigma_-|\Psi\left(t_i\right)\right\rangle\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">psi</span> <span class="ow">in</span> <span class="n">tools</span><span class="o">.</span><span class="n">evolution</span><span class="p">(</span><span class="n">start_index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">end_index</span> <span class="o">=</span> <span class="n">nt</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">Hi</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">,</span> <span class="n">initial_state</span> <span class="o">=</span> <span class="n">psi_ini</span><span class="p">):</span>
+    <span class="n">nq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">sigma_p</span> <span class="o">@</span> <span class="n">sigma_m</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+              
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nq</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;occupation of qubit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;occupation of qubit&#39;)
+</pre></div>
+</div>
+<img alt="_images/lightcone_19_1.png" src="_images/lightcone_19_1.png" />
+</div>
+</div>
+<p>Then let us solve the Schrodinger equation but now keeping only <span class="math notranslate nohighlight">\(m\left(t\right)\)</span> modes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nq2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>
+
+<span class="n">psi_begin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">psi_ini</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ti</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">ti</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">ti</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">Hmconst</span> <span class="o">=</span> <span class="n">Eat</span> <span class="o">*</span> <span class="n">sigma_p</span> <span class="o">@</span> <span class="n">sigma_m</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">sigma_p</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">sigma_m</span> <span class="o">@</span> <span class="n">a_hat_dag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+        <span class="o">+</span> <span class="n">e</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a_hat_dag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span><span class="p">)])</span> \
+        <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a_hat_dag</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">a_hat_dag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">a_hat</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+    
+    <span class="k">def</span> <span class="nf">Hm</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Hmconst</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma_x</span>
+    
+    <span class="k">def</span> <span class="nf">Hmi</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">H</span><span class="p">(</span><span class="n">ti</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">psi</span> <span class="ow">in</span> <span class="n">tools</span><span class="o">.</span><span class="n">evolution</span><span class="p">(</span><span class="n">start_index</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">end_index</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">Hmi</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">,</span> <span class="n">initial_state</span> <span class="o">=</span> <span class="n">psi_begin</span><span class="p">):</span>
+        <span class="n">nq2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">sigma_p</span> <span class="o">@</span> <span class="n">sigma_m</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+        
+    <span class="n">psi_begin</span> <span class="o">=</span> <span class="n">psi</span>
+              
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">nq2</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;only inside lightcone&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;all sites&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;occupation of qubit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;occupation of qubit&#39;)
+</pre></div>
+</div>
+<img alt="_images/lightcone_21_1.png" src="_images/lightcone_21_1.png" />
+</div>
+</div>
+<p>We see that the lighcone works!</p>
 </section>
 </section>
 
