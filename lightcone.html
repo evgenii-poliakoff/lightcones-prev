@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+    <link rel="next" title="The apriori estimate of the Lieb-Robinson lightcone" href="lightcone_apriory_estimate.html" />
     <link rel="prev" title="Why nonstationary quantum motion is difficult?" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -127,8 +127,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown-notebooks.html">
-   Notebooks with MyST Markdown
+  <a class="reference internal" href="lightcone_apriory_estimate.html">
+   The apriori estimate of the Lieb-Robinson lightcone
   </a>
  </li>
 </ul>
@@ -540,8 +540,8 @@ m(t) = \max\{t_i : t_i &lt;= t\}
     i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}_m\left(t\right)\Psi\left(t\right)
 \]</div>
 <p>with</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-lightcone-restricted-ham">
+<span class="eqno">(5)<a class="headerlink" href="#equation-lightcone-restricted-ham" title="Permalink to this equation">#</a></span>\[
 H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0} + h a^{\dagger}_{0} \sigma_{-} + \sum\limits_{i=0}^{m\left(t\right)} (\varepsilon a^{\dagger}_{i} a_{i} + h a^{\dagger}_{i+1} a_{i} + h a^{\dagger}_{i} a_{i+1})  
 \]</div>
 </section>
@@ -555,7 +555,9 @@ H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_
 <p>Here is the program:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_cut</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#| label:aposteriory_estimate</span>
+
+<span class="n">a_cut</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="n">ti</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
@@ -579,7 +581,7 @@ H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0d1b60da50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc581ab7d30&gt;]
 </pre></div>
 </div>
 <img alt="_images/lightcone_17_1.png" src="_images/lightcone_17_1.png" />
@@ -648,7 +650,7 @@ occupation of the qubit: <code> nq[i] </code>=<span class="math notranslate nohi
 <img alt="_images/lightcone_21_1.png" src="_images/lightcone_21_1.png" />
 </div>
 </div>
-<p>We see that the lighcone works!</p>
+<p>We see that the lightcone works!</p>
 </section>
 </section>
 
@@ -686,10 +688,10 @@ occupation of the qubit: <code> nq[i] </code>=<span class="math notranslate nohi
             <p class="prev-next-title">Why nonstationary quantum motion is difficult?</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="markdown-notebooks.html" title="next page">
+    <a class='right-next' id="next-link" href="lightcone_apriory_estimate.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+        <p class="prev-next-title">The apriori estimate of the Lieb-Robinson lightcone</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
