@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The apriori estimate of the Lieb-Robinson lightcone" href="lightcone_apriory_estimate.html" />
+    <link rel="next" title="The apriori estimate of the Lieb-Robinson lightcone" href="lightcone_apriori_estimate.html" />
     <link rel="prev" title="Why nonstationary quantum motion is difficult?" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -127,8 +127,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="lightcone_apriory_estimate.html">
+  <a class="reference internal" href="lightcone_apriori_estimate.html">
    The apriori estimate of the Lieb-Robinson lightcone
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backward_lightcone.html">
+   The backward Lieb-Robinson lightcone
   </a>
  </li>
 </ul>
@@ -402,8 +407,8 @@ title="Print to PDF"
 <section id="example-interaction-quench-for-qubit-atom-in-the-waveguide">
 <h2>Example: Interaction quench for qubit (atom) in the waveguide<a class="headerlink" href="#example-interaction-quench-for-qubit-atom-in-the-waveguide" title="Permalink to this headline">#</a></h2>
 <p>Let us illustrate it on a specific example. Suppose we have a qubit (two-level atom) with a transition frequency <span class="math notranslate nohighlight">\(E_{at}\)</span>. We suppose there is a laser driving <span class="math notranslate nohighlight">\(f(t) = 0.1 \cos(t)\)</span> acting on the qubit. As a result, it fluoresces into the waveguide. The latter is represented as a bosonic chain with constant hoppings <span class="math notranslate nohighlight">\(h\)</span> and on-site energies <span class="math notranslate nohighlight">\(\varepsilon\)</span>. The total Hamiltonian is:</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-quench-hamiltonian">
+<span class="eqno">(5)<a class="headerlink" href="#equation-quench-hamiltonian" title="Permalink to this equation">#</a></span>\[
 H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0} + h a^{\dagger}_{0} \sigma_{-} + \sum\limits_{i=0}^{\infty} (\varepsilon a^{\dagger}_{i} a_{i} + h a^{\dagger}_{i+1} a_{i} + h a^{\dagger}_{i} a_{i+1})  
 \]</div>
 <p>Let us program this Hamiltonian:</p>
@@ -528,7 +533,7 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 <p>We observe the lightcone-like spread of disturbance.</p>
 </section>
 <section id="lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom">
-<h2>Lightcone allows us to identify the relevant and irrelevant degrees of freedom<a class="headerlink" href="#lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom" title="Permalink to this headline">#</a></h2>
+<span id="inside-lightcone"></span><h2>Lightcone allows us to identify the relevant and irrelevant degrees of freedom<a class="headerlink" href="#lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom" title="Permalink to this headline">#</a></h2>
 <p>The domain outside the lightcone consists of degrees of freedom which will become significantly excited only in the future. More specifically, for each chain site <span class="math notranslate nohighlight">\(i\)</span> there is a time moment <span class="math notranslate nohighlight">\(t_i\)</span> after which it will become statistically significant for the evolution. We may define a piece-wise continuous function <span class="math notranslate nohighlight">\(m\left(t\right)\)</span> which shows how many sites have coupled to the evolution by the time <span class="math notranslate nohighlight">\(t\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -541,7 +546,7 @@ m(t) = \max\{t_i : t_i &lt;= t\}
 \]</div>
 <p>with</p>
 <div class="math notranslate nohighlight" id="equation-lightcone-restricted-ham">
-<span class="eqno">(5)<a class="headerlink" href="#equation-lightcone-restricted-ham" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(6)<a class="headerlink" href="#equation-lightcone-restricted-ham" title="Permalink to this equation">#</a></span>\[
 H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0} + h a^{\dagger}_{0} \sigma_{-} + \sum\limits_{i=0}^{m\left(t\right)} (\varepsilon a^{\dagger}_{i} a_{i} + h a^{\dagger}_{i+1} a_{i} + h a^{\dagger}_{i} a_{i+1})  
 \]</div>
 </section>
@@ -581,7 +586,7 @@ H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc581ab7d30&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3c93567d00&gt;]
 </pre></div>
 </div>
 <img alt="_images/lightcone_17_1.png" src="_images/lightcone_17_1.png" />
@@ -688,7 +693,7 @@ occupation of the qubit: <code> nq[i] </code>=<span class="math notranslate nohi
             <p class="prev-next-title">Why nonstationary quantum motion is difficult?</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="lightcone_apriory_estimate.html" title="next page">
+    <a class='right-next' id="next-link" href="lightcone_apriori_estimate.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">The apriori estimate of the Lieb-Robinson lightcone</p>
