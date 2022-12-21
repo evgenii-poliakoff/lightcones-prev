@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The apriori estimate of the Lieb-Robinson lightcone" href="lightcone_apriori_estimate.html" />
+    <link rel="next" title="The a priori estimate of the Lieb-Robinson lightcone" href="lightcone_apriori_estimate.html" />
     <link rel="prev" title="Why nonstationary quantum motion is difficult?" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -128,7 +128,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lightcone_apriori_estimate.html">
-   The apriori estimate of the Lieb-Robinson lightcone
+   The a priori estimate of the Lieb-Robinson lightcone
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lightcone_interaction_pic.html">
+   Lightcone structure of the many-body wave function
   </a>
  </li>
  <li class="toctree-l1">
@@ -491,7 +496,7 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 \[
     i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}\left(t\right)\Psi\left(t\right)
 \]</div>
-<p>and computing the occupations <code> ni[j, i] </code> of the  waveguide sites, <code> ni[j,i] </code> = <span class="math notranslate nohighlight">\( n_j\left(t\right)=\left\langle\Psi\left(t_i\right)|a_j^{\dagger} a_j|\Psi\left(t_i\right)\right\rangle\)</span>:</p>
+<p>and computing the occupations <code> ni[j, i] </code> of the  waveguide sites, <code> ni[j,i] </code> = <span class="math notranslate nohighlight">\( n_j\left(t_i\right)=\left\langle\Psi\left(t_i\right)|a_j^{\dagger} a_j|\Psi\left(t_i\right)\right\rangle\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tools</span>
@@ -530,7 +535,7 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 <img alt="_images/lightcone_13_0.png" src="_images/lightcone_13_0.png" />
 </div>
 </div>
-<p>We observe the lightcone-like spread of disturbance.</p>
+<p>We observe the lightcone-like spread of disturbance from the site <span class="math notranslate nohighlight">\(0\)</span> to which the open system is connected.</p>
 </section>
 <section id="lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom">
 <span id="inside-lightcone"></span><h2>Lightcone allows us to identify the relevant and irrelevant degrees of freedom<a class="headerlink" href="#lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom" title="Permalink to this headline">#</a></h2>
@@ -586,7 +591,7 @@ H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3c93567d00&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f37abf8bd30&gt;]
 </pre></div>
 </div>
 <img alt="_images/lightcone_17_1.png" src="_images/lightcone_17_1.png" />
@@ -696,7 +701,7 @@ occupation of the qubit: <code> nq[i] </code>=<span class="math notranslate nohi
     <a class='right-next' id="next-link" href="lightcone_apriori_estimate.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The apriori estimate of the Lieb-Robinson lightcone</p>
+        <p class="prev-next-title">The a priori estimate of the Lieb-Robinson lightcone</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

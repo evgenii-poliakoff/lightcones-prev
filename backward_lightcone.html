@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="The apriori estimate of the Lieb-Robinson lightcone" href="lightcone_apriori_estimate.html" />
+    <link rel="prev" title="Lightcone structure of the many-body wave function" href="lightcone_interaction_pic.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -127,7 +127,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lightcone_apriori_estimate.html">
-   The apriori estimate of the Lieb-Robinson lightcone
+   The a priori estimate of the Lieb-Robinson lightcone
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lightcone_interaction_pic.html">
+   Lightcone structure of the many-body wave function
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -408,21 +413,21 @@ title="Print to PDF"
 we are given initial wavefunction <span class="math notranslate nohighlight">\(\Psi\left(0\right)\)</span>.</p>
 <p>We can solve the non-stationary Schrodinger equation forward in time</p>
 <div class="math notranslate nohighlight" id="equation-forward-time-eq">
-<span class="eqno">(11)<a class="headerlink" href="#equation-forward-time-eq" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17)<a class="headerlink" href="#equation-forward-time-eq" title="Permalink to this equation">#</a></span>\[
     i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}\left(t\right)\Psi\left(t\right)
 \]</div>
 <p>and obtain the final state <span class="math notranslate nohighlight">\(\Psi\left(T\right)\)</span>.</p>
 <p>The time-reversal symmetry refers to the fact that backward-evolving wavefunction</p>
 <div class="math notranslate nohighlight" id="equation-backward-wavefunction">
-<span class="eqno">(12)<a class="headerlink" href="#equation-backward-wavefunction" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18)<a class="headerlink" href="#equation-backward-wavefunction" title="Permalink to this equation">#</a></span>\[
     \mathcal{T}\left[\Psi\right]\left(t\right) = \Psi^{*}\left(T-t\right)
 \]</div>
-<p>also satisfies the forward time Schoridinger equation <a class="reference internal" href="#equation-forward-time-eq">(11)</a>. Here <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> is called the time reversal operator, <span class="math notranslate nohighlight">\(\mathcal{T^2}=1\)</span></p>
+<p>also satisfies the forward time Schoridinger equation <a class="reference internal" href="#equation-forward-time-eq">(17)</a>. Here <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> is called the time reversal operator, <span class="math notranslate nohighlight">\(\mathcal{T^2}=1\)</span></p>
 </section>
 <section id="implications-for-the-lieb-robinson-lightcone">
 <h2>Implications for the Lieb-Robinson lightcone<a class="headerlink" href="#implications-for-the-lieb-robinson-lightcone" title="Permalink to this headline">#</a></h2>
 <p>The time reversal symmetry has deep implications for the Lieb-Robinson lightcone. Suppose we are interested only in the reduced state of the local observable. In terms of our illustrative example <a class="reference internal" href="lightcone.html#equation-quench-hamiltonian">(5)</a>, this is the state of atom connected to site 0 of the chain. Consider the final joint wavefunction of the atom and the chain $\left|\Psi\left(T\right). It is some correlated many-body state.</p>
-<p>Now let us evolve it backwards in time. We apply the time-reversal <a class="reference internal" href="#equation-backward-wavefunction">(12)</a> and perform the forward evolution using the lightcone-restricted Hamiltonian of section <a class="reference internal" href="lightcone.html#inside-lightcone"><span class="std std-ref">Lightcone allows us to identify the relevant and irrelevant degrees of freedom</span></a>. The lightcone is estimated as described in section <a class="reference internal" href="lightcone_apriori_estimate.html#lr-metric"><span class="std std-ref">Lieb-Robinson metric</span></a>.
+<p>Now let us evolve it backwards in time. We apply the time-reversal <a class="reference internal" href="#equation-backward-wavefunction">(18)</a> and perform the forward evolution using the lightcone-restricted Hamiltonian of section <a class="reference internal" href="lightcone.html#inside-lightcone"><span class="std std-ref">Lightcone allows us to identify the relevant and irrelevant degrees of freedom</span></a>. The lightcone is estimated as described in section <a class="reference internal" href="lightcone_apriori_estimate.html#lr-metric"><span class="std std-ref">Lieb-Robinson metric</span></a>.
 As we have discussed in <a class="reference internal" href="lightcone_apriori_estimate.html#lc-deriv-through-intensity"><span class="std std-ref">Estimate the lightcone through the average intensity of coupling</span></a>, the lightcone works even if the initial state of the environment is highly correlated,</p>
 <p>As a result, we have the initial condition</p>
 <div class="math notranslate nohighlight">
@@ -431,7 +436,7 @@ As we have discussed in <a class="reference internal" href="lightcone_apriori_es
 \]</div>
 <p>which evolves under the lightcone-restricted Hamiltonian <a class="reference internal" href="lightcone.html#equation-lightcone-restricted-ham">(6)</a>,</p>
 <div class="math notranslate nohighlight" id="equation-backward-evolution">
-<span class="eqno">(13)<a class="headerlink" href="#equation-backward-evolution" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(19)<a class="headerlink" href="#equation-backward-evolution" title="Permalink to this equation">#</a></span>\[
     i\partial_t \Psi_{-}\left(t\right) = H_m\left(t\right) \Psi_{-}\left(0\right),
 \]</div>
 <p>which we repeat here</p>
@@ -439,7 +444,7 @@ As we have discussed in <a class="reference internal" href="lightcone_apriori_es
 \[
     H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f^*(T-t) + h \sigma_{+} a_{0} + h a^{\dagger}_{0} \sigma_{-} + \sum\limits_{i=0}^{m\left(t\right)} (\varepsilon a^{\dagger}_{i} a_{i} + h a^{\dagger}_{i+1} a_{i} + h a^{\dagger}_{i} a_{i+1}). 
 \]</div>
-<p>Here the number of coupled modes grows in a step-wise fascion, see <a class="reference internal" href="lightcone_apriori_estimate.html#test-apriori-lc"><span class="std std-ref">Test of the apriori lightcone estimate on example problem.</span></a>.</p>
+<p>Here the number of coupled modes grows in a step-wise fascion, see <a class="reference internal" href="lightcone_apriori_estimate.html#test-apriori-lc"><span class="std std-ref">Test of the a priori lightcone estimate on example problem.</span></a>.</p>
 </section>
 <section id="the-backward-lightcone">
 <h2>The backward lightcone<a class="headerlink" href="#the-backward-lightcone" title="Permalink to this headline">#</a></h2>
@@ -453,10 +458,36 @@ As we have discussed in <a class="reference internal" href="lightcone_apriori_es
 <p>As the evolution time <span class="math notranslate nohighlight">\(\tau\)</span> approaches the final time <span class="math notranslate nohighlight">\(T\)</span>, fewer and fewer modes have non-negligible average intensity of interactions.</p>
 <p>We expect that the solution of the Schrodinger equation inside the backward lightcone,</p>
 <div class="math notranslate nohighlight" id="equation-backward-lc-restricted">
-<span class="eqno">(14)<a class="headerlink" href="#equation-backward-lc-restricted" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(20)<a class="headerlink" href="#equation-backward-lc-restricted" title="Permalink to this equation">#</a></span>\[
     i\partial_t \Psi\left(t\right) = H_m^*\left(T-t\right) \Psi\left(0\right),
 \]</div>
 <p>should reproduce the exact results. Let us test this!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tools</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">spin_boson_quench_model</span><span class="p">(</span><span class="n">num_modes</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">max_num_quanta</span> <span class="o">=</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">tools</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">m</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">spin_boson_quench_model</span><span class="p">(</span><span class="n">num_modes</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">max_num_quanta</span> <span class="o">=</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="nn">File ~/Notebooks/lightcones/tools.py:365,</span> in <span class="ni">spin_boson_quench_model.__init__</span><span class="nt">(self, num_modes, max_num_quanta)</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_modes</span><span class="p">,</span> <span class="n">max_num_quanta</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">365</span>     <span class="n">hs_atom</span> <span class="o">=</span> <span class="n">sq</span><span class="o">.</span><span class="n">fock_space</span><span class="p">(</span><span class="n">num_modes</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_total_occupation</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">statistics</span> <span class="o">=</span> <span class="s1">&#39;Bose&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span>     <span class="n">m</span> <span class="o">=</span> <span class="n">num_modes</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span>     <span class="n">n</span> <span class="o">=</span> <span class="n">max_num_quanta</span>
+
+<span class="ne">NameError</span>: name &#39;sq&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -487,11 +518,11 @@ As we have discussed in <a class="reference internal" href="lightcone_apriori_es
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="lightcone_apriori_estimate.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="lightcone_interaction_pic.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">The apriori estimate of the Lieb-Robinson lightcone</p>
+            <p class="prev-next-title">Lightcone structure of the many-body wave function</p>
         </div>
     </a>
 </div>
