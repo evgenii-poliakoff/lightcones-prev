@@ -499,7 +499,7 @@ we are given initial wavefunction <span class="math notranslate nohighlight">\(\
 <p>We restrict this Hamiltonian to the a priory lightcone estimate:</p>
 <div class="math notranslate nohighlight">
 \[
-    H^{\prime}_{int}\left(t\right) \to H_{lc}\left(t\right)= E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} \sum_{k=0}^{m\left(t\right)} \phi_k\left(t\right) a_k + h \sum_{k=0}^{m\left(t\right)} \phi_k\left(t\right) a_k^{\dagger}  \sigma_{-}, 
+    H^{\prime}_{int}\left(t\right) \to H_{lc}\left(t\right)= E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} \sum_{k=0}^{m\left(t\right)} \phi_k\left(t\right) a_k + h \sum_{k=0}^{m\left(t\right)} \phi_k^{\ast}\left(t\right) a_k^{\dagger}  \sigma_{-}, 
 \]</div>
 <p>so that the evolution is</p>
 <div class="math notranslate nohighlight" id="equation-lc1">
@@ -521,7 +521,7 @@ we are given initial wavefunction <span class="math notranslate nohighlight">\(\
 <p>with the forward evolution under the Hamiltonian</p>
 <div class="math notranslate nohighlight" id="equation-lc3">
 <span class="eqno">(27)<a class="headerlink" href="#equation-lc3" title="Permalink to this equation">#</a></span>\[
-    \mathcal{T}H_{lc}\left(t\right)\mathcal{T} = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} \sum_{k=0}^{m\left(T-t\right)} \phi^{\ast}_k\left(T-t\right) a_k + h \sum_{k=0}^{m\left(T-t\right)} \phi^{\ast}_k\left(T-t\right) a_k^{\dagger}  \sigma_{-},
+    \mathcal{T}H_{lc}\left(t\right)\mathcal{T} = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} \sum_{k=0}^{m\left(T-t\right)} \phi^{\ast}_k\left(T-t\right) a_k + h \sum_{k=0}^{m\left(T-t\right)} \phi_k\left(T-t\right) a_k^{\dagger}  \sigma_{-},
 \]</div>
 <div class="math notranslate nohighlight" id="equation-lc4">
 <span class="eqno">(28)<a class="headerlink" href="#equation-lc4" title="Permalink to this equation">#</a></span>\[
@@ -537,8 +537,8 @@ we are given initial wavefunction <span class="math notranslate nohighlight">\(\
 <h2>Interpretation of the result: the backward lightcone<a class="headerlink" href="#interpretation-of-the-result-the-backward-lightcone" title="Permalink to this headline">#</a></h2>
 <p>The evolution <a class="reference internal" href="#equation-lc3">(27)</a>-<a class="reference internal" href="#equation-lc4">(28)</a>-<a class="reference internal" href="#equation-lc5">(29)</a> can be interpreted in the following way.</p>
 <p>Given the initial condition <span class="math notranslate nohighlight">\(\Psi\left(0\right)\)</span>,  first we rotate to some other frame via one-particle transform</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-rotated-frame">
+<span class="eqno">(30)<a class="headerlink" href="#equation-rotated-frame" title="Permalink to this equation">#</a></span>\[
     \widehat{U}_{back} = \exp\left(-i T \widehat{H}_{b}\right).
 \]</div>
 <p>In this new frame the initial condition becomes</p>
@@ -551,15 +551,155 @@ we are given initial wavefunction <span class="math notranslate nohighlight">\(\
 <a class="reference internal image-reference" href="_images/backward_lightcone.png"><img alt="_images/backward_lightcone.png" src="_images/backward_lightcone.png" style="width: 50%;" /></a>
 <p>As the evolution time <span class="math notranslate nohighlight">\(\tau\)</span> approaches the final time <span class="math notranslate nohighlight">\(T\)</span>, fewer and fewer modes have non-negligible average intensity of interactions.</p>
 <p>We expect that the solution of the Schrodinger equation inside the backward lightcone should reproduce the exact results. Let us test this!</p>
+<p>First solve the full problem (with all sites):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tools</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">m</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">spin_boson_quench_model</span><span class="p">(</span><span class="n">num_modes</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">max_num_quanta</span> <span class="o">=</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">Eat</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    
+<span class="n">m</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">spin_boson_quench_model</span><span class="p">(</span><span class="n">num_modes</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">max_num_quanta</span> <span class="o">=</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">Hconst</span> <span class="o">=</span> <span class="n">Eat</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">s_p</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">s_m</span> \
+    <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">s_p</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+        <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">s_m</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">a_dag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+            <span class="o">+</span> <span class="n">e</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="n">m</span><span class="o">.</span><span class="n">a_dag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">num_modes</span><span class="p">)])</span> \
+                <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span><span class="n">m</span><span class="o">.</span><span class="n">a_dag</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">a_dag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">num_modes</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+
+<span class="k">def</span> <span class="nf">Hi</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Hconst</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">ti</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">s_x</span>
+
+<span class="n">tmax</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">tmax</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span>
+
+<span class="n">nq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>
+<span class="n">nc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">psi_ini</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">dimension</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">)</span>
+<span class="n">psi_ini</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> 
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">psi</span> <span class="ow">in</span> <span class="n">tools</span><span class="o">.</span><span class="n">evolution</span><span class="p">(</span><span class="n">start_index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">end_index</span> <span class="o">=</span> <span class="n">nt</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">Hi</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">,</span> <span class="n">initial_state</span> <span class="o">=</span> <span class="n">psi_ini</span><span class="p">):</span>
+    <span class="n">nq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">s_p</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">s_m</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">nc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">a_dag</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;all sites&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;occupation of qubit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;occupation of qubit&#39;)
+</pre></div>
+</div>
+<img alt="_images/backward_lightcone_1_1.png" src="_images/backward_lightcone_1_1.png" />
+</div>
+</div>
+<p>Then inside the backward lightcone:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">tools</span>
+<span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
+
+<span class="n">ns</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">apriori_spatial_lightcone</span><span class="p">(</span><span class="n">hoppings</span><span class="o">=</span><span class="p">[</span><span class="n">h</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">ns</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">energies</span><span class="o">=</span><span class="p">[</span><span class="n">e</span><span class="p">]</span><span class="o">*</span><span class="n">ns</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">nsites</span><span class="o">=</span><span class="n">ns</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">spin_boson_quench_model</span><span class="p">(</span><span class="n">num_modes</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="n">max_num_quanta</span> <span class="o">=</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">psi_ini</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">dimension</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">)</span>
+<span class="n">psi_ini</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">nq2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>
+<span class="n">nc2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">a_int_coeffs</span> <span class="o">=</span> <span class="p">[</span><span class="n">lc</span><span class="o">.</span><span class="n">get_a_int</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">lc</span><span class="o">.</span><span class="n">get_a_int</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">lc</span><span class="o">.</span><span class="n">get_a_int</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">eval</span><span class="p">():</span>
+    
+    <span class="n">psi_begin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">psi_ini</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lc</span><span class="o">.</span><span class="n">intervals</span><span class="p">))):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">nt</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lc</span><span class="o">.</span><span class="n">intervals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">nt</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lc</span><span class="o">.</span><span class="n">intervals</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">a</span><span class="o">&gt;</span><span class="n">lc</span><span class="o">.</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">lc</span><span class="o">.</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+        <span class="k">def</span> <span class="nf">Hmi</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+            <span class="n">a_int</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">lc</span><span class="o">.</span><span class="n">coupling</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">lc</span><span class="o">.</span><span class="n">nt</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ti</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span><span class="p">)])</span> 
+            <span class="k">return</span> <span class="n">Eat</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">s_p</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">s_m</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">ti</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">s_x</span> \
+                <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">s_p</span> <span class="o">@</span> <span class="n">a_int</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">s_m</span> <span class="o">@</span> <span class="n">a_int</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+    
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">psi</span> <span class="ow">in</span> <span class="n">tools</span><span class="o">.</span><span class="n">evolution</span><span class="p">(</span><span class="n">start_index</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">end_index</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="n">Hmi</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">,</span> <span class="n">initial_state</span> <span class="o">=</span> <span class="n">psi_begin</span><span class="p">):</span>
+            <span class="n">nq2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">s_p</span> <span class="o">@</span> <span class="n">m</span><span class="o">.</span><span class="n">s_m</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+                <span class="n">a_k_int</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">*</span> <span class="n">a_int_coeffs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">p</span><span class="p">,</span> <span class="n">lc</span><span class="o">.</span><span class="n">nt</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">num_modes</span><span class="p">)])</span>
+                <span class="n">nc2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">a_k_int</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">a_k_int</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+            
+        <span class="n">psi_begin</span> <span class="o">=</span> <span class="n">psi</span>
+        
+<span class="nb">eval</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">nq2</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;only inside apriori lightcone&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;all sites&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;occupation of qubit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;occupation of qubit&#39;)
+</pre></div>
+</div>
+<img alt="_images/backward_lightcone_5_1.png" src="_images/backward_lightcone_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nc</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">nc2</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;occupation of chain sites&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;occupation of chain sites&#39;)
+</pre></div>
+</div>
+<img alt="_images/backward_lightcone_6_1.png" src="_images/backward_lightcone_6_1.png" />
+</div>
+</div>
+<p>We see that both the dynamics of the qubit, and of the chain sites, agree with the numerically exact result.
+Therefore, the backward lightcone is a structure of the whole many-body wavefunction, to the leading order of statistical significance, as in the following picture:</p>
+<a class="reference internal image-reference" href="_images/backward_lightcone_wavefunction.png"><img alt="_images/backward_lightcone_wavefunction.png" src="_images/backward_lightcone_wavefunction.png" style="width: 80%;" /></a>
+<p>Here primes denote the rotated frame, <a class="reference internal" href="#equation-rotated-frame">(30)</a></p>
 </section>
 </section>
 
