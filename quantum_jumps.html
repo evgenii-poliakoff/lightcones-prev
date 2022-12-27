@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="The backward Lieb-Robinson lightcone" href="backward_lightcone.html" />
@@ -442,129 +444,147 @@ title="Print to PDF"
 <h1>Tracing out the backward light cone<a class="headerlink" href="#tracing-out-the-backward-light-cone" title="Permalink to this headline">#</a></h1>
 <section id="invariance-of-entanglement-across-the-backward-light-cone-boundary">
 <h2>Invariance of entanglement across the backward light cone boundary<a class="headerlink" href="#invariance-of-entanglement-across-the-backward-light-cone-boundary" title="Permalink to this headline">#</a></h2>
-<p>Suppose we are interested in the dynamics only on the time interval $\left[0,T\right]$.</p>
+<p>Suppose we are interested in the dynamics only on the time interval <span class="math notranslate nohighlight">\(\left[0,T\right]\)</span>.</p>
 <p>As discussed in the previous section <a class="reference internal" href="backward_lightcone.html#backward-lightcone"><span class="std std-ref">The backward Lieb-Robinson lightcone</span></a>, we have the backward Lieb-Robinson light cone:</p>
 <figure class="align-default" id="bck-lc">
 <a class="reference internal image-reference" href="_images/outgoing_modes.png"><img alt="_images/outgoing_modes.png" src="_images/outgoing_modes.png" style="width: 50%;" /></a>
 </figure>
 <p>The region colored with red consists of modes with are irreversibly decoupled from the local interacting site.</p>
-<p>The total many-body state at time $t$ is $\left| \Psi \left(t\right) \right\rangle$.</p>
+<p>The total many-body state at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(\left| \Psi \left(t\right) \right\rangle\)</span>.</p>
 <p>We make the following bipartition:</p>
-<p>$$
-\left| \Psi \left(t\right) \right\rangle = \sum_p c_p \left| \psi_p \left(t\right) \right\rangle_{q+inside} \otimes
-\left| \phi_p \left(t\right) \right\rangle_{outside},
-$$ (in_out_bipart)</p>
+<div class="math notranslate nohighlight" id="equation-in-out-bipart">
+<span class="eqno">(31)<a class="headerlink" href="#equation-in-out-bipart" title="Permalink to this equation">#</a></span>\[
+    \left| \Psi \left(t\right) \right\rangle = \sum_p c_p \left| \psi_p \left(t\right) \right\rangle_{q+inside} \otimes 
+    \left| \phi_p \left(t\right) \right\rangle_{outside}, 
+\]</div>
 <p>where “q+inside” refers to the modes of the open system (atom) and the bath modes inside the backward lightcone;
 “outside” refers to the bath modes outside the backward lightcone (red colored area).</p>
-<p>We can select $\left| \phi_p \left(t\right) \right\rangle_{outside}$ as orthogonal basis elements,</p>
-<p>$$
-\left\langle \phi_q \right| \left. \phi_p \right \rangle_{outside} = \delta_{qp}.
-$$</p>
-<p>The corresponding wavefunctions for the inside part $\left| \psi_p \left(t\right) \right\rangle_{q+inside}$ need not orthogonal, but can be chosen to be normalized,</p>
-<p>$$
-\left\langle \psi_p \right| \left. \psi_p \right \rangle_{q+inside} = 1.
-$$</p>
-<p>The many-body state state at a later time $\left| \Psi \left(t^{\prime}\right) \right\rangle$ is related by evolution operator,</p>
-<p>$$
-\left| \Psi \left(t^{\prime}\right) \right\rangle = \widehat{U}\left(t^{\prime}, t \right)
-\left| \Psi \left(t\right) \right\rangle.
-$$</p>
+<p>We can select <span class="math notranslate nohighlight">\(\left| \phi_p \left(t\right) \right\rangle_{outside}\)</span> as orthogonal basis elements,</p>
+<div class="math notranslate nohighlight">
+\[
+    \left\langle \phi_q \right| \left. \phi_p \right \rangle_{outside} = \delta_{qp}.
+\]</div>
+<p>The corresponding wavefunctions for the inside part <span class="math notranslate nohighlight">\(\left| \psi_p \left(t\right) \right\rangle_{q+inside}\)</span> need not orthogonal, but can be chosen to be normalized,</p>
+<div class="math notranslate nohighlight">
+\[
+     \left\langle \psi_p \right| \left. \psi_p \right \rangle_{q+inside} = 1.
+\]</div>
+<p>The many-body state state at a later time <span class="math notranslate nohighlight">\(\left| \Psi \left(t^{\prime}\right) \right\rangle\)</span> is related by evolution operator,</p>
+<div class="math notranslate nohighlight">
+\[
+    \left| \Psi \left(t^{\prime}\right) \right\rangle = \widehat{U}\left(t^{\prime}, t \right)
+          \left| \Psi \left(t\right) \right\rangle.
+\]</div>
 <p>Since the outgoing (outside the backward lightcone) modes have negligible average intensity of coupling, the evolution operator has the effective bipartitioning</p>
-<p>$$
-\widehat{U}\left(t^{\prime} -t \right) = \widehat{U}<em>{q+inside}\left(t^{\prime}, t \right) \otimes \widehat{1}</em>{outside} + O\left(a_{cut}\right),
-$$</p>
+<div class="math notranslate nohighlight">
+\[
+    \widehat{U}\left(t^{\prime} -t \right) = \widehat{U}_{q+inside}\left(t^{\prime}, t \right) \otimes \widehat{1}_{outside} + O\left(a_{cut}\right),
+\]</div>
 <p>that is it does not couple the outgoing mode.</p>
 <p>Therefore, we have at a  later time:</p>
-<p>$$
-\left| \Psi \left(t^\prime\right) \right\rangle = \sum_p c_p \left| \psi_p \left(t^\prime\right) \right\rangle_{q+inside} \otimes
-\left| \phi_p \left(t\right) \right\rangle_{outside} + O\left(a_{cut}\right),.
-$$ (in_out_bipart_prime)</p>
+<div class="math notranslate nohighlight" id="equation-in-out-bipart-prime">
+<span class="eqno">(32)<a class="headerlink" href="#equation-in-out-bipart-prime" title="Permalink to this equation">#</a></span>\[
+    \left| \Psi \left(t^\prime\right) \right\rangle = \sum_p c_p \left| \psi_p \left(t^\prime\right) \right\rangle_{q+inside} \otimes 
+    \left| \phi_p \left(t\right) \right\rangle_{outside} + O\left(a_{cut}\right),. 
+\]</div>
 <p>with</p>
-<p>$$
-\left|\psi_p \left(t^\prime\right) \right\rangle_{q+inside} = \widehat{U}<em>{q+inside}\left(t^{\prime}, t \right) \left| \psi_p \left(t\right) \right\rangle</em>{q+inside}.
-$$</p>
-<p>Comparing the equations <code class="xref eq docutils literal notranslate"><span class="pre">in_out_bipart</span></code> and <code class="xref eq docutils literal notranslate"><span class="pre">in_out_bipart_prime</span></code>, we see that this bipartition is invariant under the future quantum motion.</p>
-<p>The coefficients $c_p$ are time independent.</p>
+<div class="math notranslate nohighlight">
+\[
+    \left|\psi_p \left(t^\prime\right) \right\rangle_{q+inside} = \widehat{U}_{q+inside}\left(t^{\prime}, t \right) \left| \psi_p \left(t\right) \right\rangle_{q+inside}.
+\]</div>
+<p>Comparing the equations <a class="reference internal" href="#equation-in-out-bipart">(31)</a> and <a class="reference internal" href="#equation-in-out-bipart-prime">(32)</a>, we see that this bipartition is invariant under the future quantum motion.</p>
+<p>The coefficients <span class="math notranslate nohighlight">\(c_p\)</span> are time independent.</p>
 </section>
 <section id="schmidt-decomposition">
 <h2>Schmidt decomposition<a class="headerlink" href="#schmidt-decomposition" title="Permalink to this headline">#</a></h2>
 <p>We compute the density matrix of the quantum field outside the lightcone:</p>
-<p>$$
-\widehat{\rho}<em>{outside} = \textrm{Tr}</em>{q+inside}\left[\left|\Psi\left(t\right)\right\rangle\left\langle\Psi\left(t\right)\right|\right]
-$$</p>
+<div class="math notranslate nohighlight">
+\[
+    \widehat{\rho}_{outside} = \textrm{Tr}_{q+inside}\left[\left|\Psi\left(t\right)\right\rangle\left\langle\Psi\left(t\right)\right|\right]
+\]</div>
 <p>and find its eigenvalues:</p>
-<p>$$
-\widehat{\rho}<em>{outside} \left| \phi_p \left(t\right) \right\rangle</em>{outside} = \left|c_p\right|^2 \left| \phi_p \left(t\right) \right\rangle_{outside}.
-$$</p>
-<p>The resulting $\left| \phi_p \left(t\right) \right\rangle_{outside}$ yield the bipartition of the form <code class="xref eq docutils literal notranslate"><span class="pre">in_out_bipart</span></code>, with the additional property that  $\left| \psi_p \left(t\right) \right\rangle_{q+inside}$ are also orthonormal. This is the Schmidt decomposition.</p>
-<p>One can introduce a statistical cut off $\pi_{cut}$ so that we keep only a finite number of terms in <code class="xref eq docutils literal notranslate"><span class="pre">in_out_bipart</span></code> such that</p>
-<p>$$
-\left|c_p\right|^2  &gt; \pi_{cut}.
-$$</p>
-<p>Suppose there are $m$ such terms.</p>
+<div class="math notranslate nohighlight">
+\[
+    \widehat{\rho}_{outside} \left| \phi_p \left(t\right) \right\rangle_{outside} = \left|c_p\right|^2 \left| \phi_p \left(t\right) \right\rangle_{outside}.
+\]</div>
+<p>The resulting <span class="math notranslate nohighlight">\(\left| \phi_p \left(t\right) \right\rangle_{outside}\)</span> yield the bipartition of the form <a class="reference internal" href="#equation-in-out-bipart">(31)</a>, with the additional property that  <span class="math notranslate nohighlight">\(\left| \psi_p \left(t\right) \right\rangle_{q+inside}\)</span> are also orthonormal. This is the Schmidt decomposition.</p>
+<p>One can introduce a statistical cut off <span class="math notranslate nohighlight">\(\pi_{cut}\)</span> so that we keep only a finite number of terms in <a class="reference internal" href="#equation-in-out-bipart">(31)</a> such that</p>
+<div class="math notranslate nohighlight">
+\[
+    \left|c_p\right|^2  &gt; \pi_{cut}.
+\]</div>
+<p>Suppose there are <span class="math notranslate nohighlight">\(m\)</span> such terms.</p>
 </section>
 <section id="computing-the-observables">
 <h2>Computing the observables<a class="headerlink" href="#computing-the-observables" title="Permalink to this headline">#</a></h2>
-<p>Suppose we are interested in some observable $\widehat{O}<em>{q+inside} \otimes \widehat{O}</em>{outside}$, and want to compute its average $\overline{\widehat{O}<em>{q+inside} \otimes \widehat{O}</em>{outside}\left(t\right)}$ at later time moments $t^\prime\geq t$.</p>
-<p>Then we form the $m\times m$ matrix</p>
-<p>$$
-O\left(p,q\right)<em>{outside} =  \left\langle \psi_p \right| \widehat{O}</em>{outside} \left| \psi_q \right \rangle_{outside}.
-$$</p>
+<p>Suppose we are interested in some observable <span class="math notranslate nohighlight">\(\widehat{O}_{q+inside} \otimes \widehat{O}_{outside}\)</span>, and want to compute its average <span class="math notranslate nohighlight">\(\overline{\widehat{O}_{q+inside} \otimes \widehat{O}_{outside}\left(t\right)}\)</span> at later time moments <span class="math notranslate nohighlight">\(t^\prime\geq t\)</span>.</p>
+<p>Then we form the <span class="math notranslate nohighlight">\(m\times m\)</span> matrix</p>
+<div class="math notranslate nohighlight">
+\[
+    O\left(p,q\right)_{outside} =  \left\langle \psi_p \right| \widehat{O}_{outside} \left| \psi_q \right \rangle_{outside}.
+\]</div>
 <p>We find its eigenvalues</p>
-<p>$$
-\sum_{q=1}^m O\left(p,q\right)_{outside} f^{(l)}_q = O_l f^{(l)}_p.
-$$</p>
+<div class="math notranslate nohighlight">
+\[
+    \sum_{q=1}^m O\left(p,q\right)_{outside} f^{(l)}_q = O_l f^{(l)}_p.
+\]</div>
 <p>We choose a novel basis for bipartition:</p>
-<p>$$
-\left| \psi^{(O)}<em>l \right \rangle</em>{outside} = \sum_{p=1}^m f^{(l)}<em>p \left| \psi_p \right \rangle</em>{outside}.
-$$ (diagonalizing_basis)</p>
+<div class="math notranslate nohighlight" id="equation-diagonalizing-basis">
+<span class="eqno">(33)<a class="headerlink" href="#equation-diagonalizing-basis" title="Permalink to this equation">#</a></span>\[
+        \left| \psi^{(O)}_l \right \rangle_{outside} = \sum_{p=1}^m f^{(l)}_p \left| \psi_p \right \rangle_{outside}.
+\]</div>
 <p>Then the average becomes</p>
-<p>$$
-\overline{\widehat{O}<em>{q+inside} \otimes \widehat{O}</em>{outside}\left(t\right)} = \sum_p \left|c_p\right|^2  \left\langle \psi_p\left(t^\prime\right) \right| \widehat{O}<em>{q+inside}\left| \psi_p \left(t^\prime\right) \right \rangle</em>{q+inside} O_p
-$$</p>
-<p>for all later time moments $t^\prime\geq t$.</p>
+<div class="math notranslate nohighlight">
+\[
+    \overline{\widehat{O}_{q+inside} \otimes \widehat{O}_{outside}\left(t\right)} = \sum_p \left|c_p\right|^2  \left\langle \psi_p\left(t^\prime\right) \right| \widehat{O}_{q+inside}\left| \psi_p \left(t^\prime\right) \right \rangle_{q+inside} O_p
+\]</div>
+<p>for all later time moments <span class="math notranslate nohighlight">\(t^\prime\geq t\)</span>.</p>
 </section>
 <section id="stochastic-interpretation">
 <h2>Stochastic interpretation<a class="headerlink" href="#stochastic-interpretation" title="Permalink to this headline">#</a></h2>
-<p>We can compute this average at all times $t^\prime \geq t$ via the following Monte Carlo procedure:</p>
+<p>We can compute this average at all times <span class="math notranslate nohighlight">\(t^\prime \geq t\)</span> via the following Monte Carlo procedure:</p>
 <ul class="simple">
-<li><p>Given the state $\left| \Psi \left(t\right) \right\rangle$ at time $t$, we select the  basis  <code class="xref eq docutils literal notranslate"><span class="pre">diagonalizing_basis</span></code></p></li>
-<li><p>We consider $\left|c_p\right|^2$ as probabilities $P\left(p\right)$ of events $p=1\ldots m$. Each event corresponds to a collapse</p></li>
+<li><p>Given the state <span class="math notranslate nohighlight">\(\left| \Psi \left(t\right) \right\rangle\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>, we select the  basis  <a class="reference internal" href="#equation-diagonalizing-basis">(33)</a></p></li>
+<li><p>We consider <span class="math notranslate nohighlight">\(\left|c_p\right|^2\)</span> as probabilities <span class="math notranslate nohighlight">\(P\left(p\right)\)</span> of events <span class="math notranslate nohighlight">\(p=1\ldots m\)</span>. Each event corresponds to a collapse</p></li>
 </ul>
-<p>$$
-\left| \Psi \left(t\right) \right\rangle \to \left|\psi_p \left(t\right) \right\rangle_{q+inside}.
-$$</p>
+<div class="math notranslate nohighlight">
+\[
+    \left| \Psi \left(t\right) \right\rangle \to \left|\psi_p \left(t\right) \right\rangle_{q+inside}.
+\]</div>
 <p>Observe that after the collapse there is no modes outside the backward light cone. So the collapse is accompanied with reduction of the Hilbert space.</p>
 <ul class="simple">
-<li><p>We sample events $p$ according to their probability $P\left(p\right)$ via Monte Carlo algorithm.</p></li>
-<li><p>As a result, we get samples of $\left|\psi_{p_s} \left(t\right) \right\rangle_{q+inside}$, $s=1\ldots M$, where $M$ is the number of samples.</p></li>
+<li><p>We sample events <span class="math notranslate nohighlight">\(p\)</span> according to their probability <span class="math notranslate nohighlight">\(P\left(p\right)\)</span> via Monte Carlo algorithm.</p></li>
+<li><p>As a result, we get samples of <span class="math notranslate nohighlight">\(\left|\psi_{p_s} \left(t\right) \right\rangle_{q+inside}\)</span>, <span class="math notranslate nohighlight">\(s=1\ldots M\)</span>, where <span class="math notranslate nohighlight">\(M\)</span> is the number of samples.</p></li>
 <li><p>Each sample is propagated to later times via</p></li>
 </ul>
-<p>$$
-\left|\psi_{p_s} \left(t^\prime\right) \right\rangle_{q+inside} = \widehat{U}<em>{q+inside}\left(t^{\prime}, t \right)  \left|\psi</em>{p_s} \left(t\right) \right\rangle_{q+inside}
-$$ (between_jumps)</p>
+<div class="math notranslate nohighlight" id="equation-between-jumps">
+<span class="eqno">(34)<a class="headerlink" href="#equation-between-jumps" title="Permalink to this equation">#</a></span>\[
+    \left|\psi_{p_s} \left(t^\prime\right) \right\rangle_{q+inside} = \widehat{U}_{q+inside}\left(t^{\prime}, t \right)  \left|\psi_{p_s} \left(t\right) \right\rangle_{q+inside}
+\]</div>
 <ul class="simple">
 <li><p>The sample average is computed as</p></li>
 </ul>
-<p>$$
-A = \frac{1}{M} \sum_{s=1}^{M} \left\langle \psi_{p_s} \right| \widehat{O}<em>{q+inside} \left| \psi</em>{p_s} \right \rangle_{q+inside} O_{p_s}
-$$</p>
+<div class="math notranslate nohighlight">
+\[
+    A = \frac{1}{M} \sum_{s=1}^{M} \left\langle \psi_{p_s} \right| \widehat{O}_{q+inside} \left| \psi_{p_s} \right \rangle_{q+inside} O_{p_s}
+\]</div>
 </section>
 <section id="benefits-of-stochastic-interpretation">
 <h2>Benefits of stochastic interpretation<a class="headerlink" href="#benefits-of-stochastic-interpretation" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>We avoid density matrices. The latter would be obtained if we were to trace out the modes outside the backward light cone. Instead, we stay on the level of wavefunctions.</p></li>
-<li><p>The proposed algorithm is massively parallel: each sample $\left|\psi_{p_s} \left(t^\prime\right) \right\rangle_{q+inside}$ is propagated independently. Different samples  can be computed in separate threads, processes, or even on separate servers.</p></li>
+<li><p>The proposed algorithm is massively parallel: each sample <span class="math notranslate nohighlight">\(\left|\psi_{p_s} \left(t^\prime\right) \right\rangle_{q+inside}\)</span> is propagated independently. Different samples  can be computed in separate threads, processes, or even on separate servers.</p></li>
 </ul>
 </section>
 <section id="recurrent-application">
 <h2>Recurrent application<a class="headerlink" href="#recurrent-application" title="Permalink to this headline">#</a></h2>
 <p>As we see from the figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">bck_lc</span></code>, the backward light cone shrinks as we move forward in time: new modes fall out of the light cone interior.</p>
 <p>Then the above procedure can be applied recurrently: we get a sequence of quantum jumps:</p>
-<p>$$
-\ldots \to \left|\psi_{p_1} \left(t_1\right) \right\rangle_{q+inside1} \to \left|\psi_{p_2} \left(t_2\right) \right\rangle_{q+inside2} \to \left|\psi_{p_3} \left(t_3\right) \right\rangle_{q+inside3} \to \ldots<br />
-$$</p>
-<p>at a sequence of times $\ldots, t_1, t_2, t_3 \ldots$. Between the quantum jumps the samples are propagated unitarily according to <span class="xref std std-ref">between_jumps</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+ \ldots \to \left|\psi_{p_1} \left(t_1\right) \right\rangle_{q+inside1} \to \left|\psi_{p_2} \left(t_2\right) \right\rangle_{q+inside2} \to \left|\psi_{p_3} \left(t_3\right) \right\rangle_{q+inside3} \to \ldots  
+\]</div>
+<p>at a sequence of times <span class="math notranslate nohighlight">\(\ldots, t_1, t_2, t_3 \ldots\)</span>. Between the quantum jumps the samples are propagated unitarily according to <span class="xref std std-ref">between_jumps</span>.</p>
 </section>
 </section>
 

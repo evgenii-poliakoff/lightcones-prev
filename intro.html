@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="The Lieb-Robinson lightcone" href="lightcone.html" />
@@ -326,35 +328,40 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="why-nonstationary-quantum-motion-is-difficult">
 <h1>Why nonstationary quantum motion is difficult?<a class="headerlink" href="#why-nonstationary-quantum-motion-is-difficult" title="Permalink to this headline">#</a></h1>
 <p>It is much more difficult to compute the nonstationary many-particle quantum state than the equilibrium one. The reason is that in the equilibrium we can apriory estimate which degrees of freedom are statistically significant, and which are not. Indeed, in the equilibrium finite-temperature case we have the canonical Gibbs density matrix</p>
-<p>$$
-\widehat{\rho}=\exp\left(-\beta \widehat{H} \right)
-$$ (gibbs_eq)</p>
+<div class="math notranslate nohighlight" id="equation-gibbs-eq">
+<span class="eqno">(1)<a class="headerlink" href="#equation-gibbs-eq" title="Permalink to this equation">#</a></span>\[
+\widehat{\rho}=\exp\left(-\beta \widehat{H} \right) 
+\]</div>
 <p>This allows us to:</p>
 <ul class="simple">
 <li><p>easily divide the degrees of freedom into the relevant (statistically significant)/irrelevant ones (statistically insignificant). Indeed, the Gibbs distribution tells us that the high-energy degrees of freedom are exponentiallly supressed (irrelevant).</p></li>
 <li><p>develop efficient variational principles to compute the state. Indeed, by introducing  the thermodynamic potentials e.g. the  free energy functional</p></li>
 </ul>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 F = - \beta^{-1} \ln\left( \textrm{Tr} \widehat{\rho} \right),
-$$</p>
+\]</div>
 <p>we obtain a variational principle</p>
-<p>$$
-F_{var} = F_{trial} + \left\langle \widehat{H} - \widehat{H}_{trial} \right\rangle \geq F
-$$ (free_energy_variational_eq)</p>
-<p>for the trial (approximate) Hamiltonians $\widehat{H}_{trial}$.  These trial Hamiltonians directly estimate the whole state at a given target temperature. We say therefore that these variational principles are <em>global</em>.</p>
+<div class="math notranslate nohighlight" id="equation-free-energy-variational-eq">
+<span class="eqno">(2)<a class="headerlink" href="#equation-free-energy-variational-eq" title="Permalink to this equation">#</a></span>\[
+    F_{var} = F_{trial} + \left\langle \widehat{H} - \widehat{H}_{trial} \right\rangle \geq F
+\]</div>
+<p>for the trial (approximate) Hamiltonians <span class="math notranslate nohighlight">\(\widehat{H}_{trial}\)</span>.  These trial Hamiltonians directly estimate the whole state at a given target temperature. We say therefore that these variational principles are <em>global</em>.</p>
 <p>Compared to this, the formal expression for the nonstationary state</p>
-<p>$$
-\left| \Psi\left(t\right)\right\rangle = \exp(-i t \widehat{H}) \left| \Psi\left(0\right)\right\rangle
-$$ (realtime_eq)</p>
+<div class="math notranslate nohighlight" id="equation-realtime-eq">
+<span class="eqno">(3)<a class="headerlink" href="#equation-realtime-eq" title="Permalink to this equation">#</a></span>\[
+\left| \Psi\left(t\right)\right\rangle = \exp(-i t \widehat{H}) \left| \Psi\left(0\right)\right\rangle 
+\]</div>
 <ul class="simple">
 <li><p>does not allow for apriory estimation of relevant/irrelevant degrees of freedom: for a general quench, different energy scales are coupled. The exponent is an oscillating function of energy, it does not exhibit the exponential decay.</p></li>
 <li><p>does not lead to potentials with <em>global</em> variantional properties.</p></li>
 </ul>
 <p>Indeed, for the last point: the widely employed Dirac-Frenkel/McLachlan variational principle</p>
-<p>$$
-\frac{\delta}{\delta \Psi} \left\Vert i\frac{\partial \Psi}{\partial t} - \widehat{H} \Psi  \right\Vert = 0
-$$ (dirac_frenkel_eq)</p>
-<p>is local: for each time moment, it merely tries to minimize the local discrepancy between the right and the left-sides of the Schrodinger equation. It knows nothing about what degrees of freedom are relevant at the target time, and how to approximate the whole quantum state. In this respect this variational  principle is much more inferior than <code class="xref eq docutils literal notranslate"><span class="pre">free_energy_variational_eq</span></code>.</p>
+<div class="math notranslate nohighlight" id="equation-dirac-frenkel-eq">
+<span class="eqno">(4)<a class="headerlink" href="#equation-dirac-frenkel-eq" title="Permalink to this equation">#</a></span>\[
+    \frac{\delta}{\delta \Psi} \left\Vert i\frac{\partial \Psi}{\partial t} - \widehat{H} \Psi  \right\Vert = 0
+\]</div>
+<p>is local: for each time moment, it merely tries to minimize the local discrepancy between the right and the left-sides of the Schrodinger equation. It knows nothing about what degrees of freedom are relevant at the target time, and how to approximate the whole quantum state. In this respect this variational  principle is much more inferior than <a class="reference internal" href="#equation-free-energy-variational-eq">(2)</a>.</p>
 </section>
 
     <script type="text/x-thebe-config">
