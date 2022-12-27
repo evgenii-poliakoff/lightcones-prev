@@ -1,0 +1,630 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tracing out the backward light cone &#8212; LIGHTCONES</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="The backward Lieb-Robinson lightcone" href="backward_lightcone.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/lightcone_rg_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">LIGHTCONES</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="welcome.html">
+                    Welcome to the LIGHTCONES project
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Why nonstationary quantum motion is difficult?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lightcone.html">
+   The Lieb-Robinson lightcone
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lightcone_apriori_estimate.html">
+   The a priori estimate of the Lieb-Robinson lightcone
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lightcone_interaction_pic.html">
+   Lightcone structure of the many-body wave function
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="backward_lightcone.html">
+   The backward Lieb-Robinson lightcone
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tracing out the backward light cone
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/quantum_jumps.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fquantum_jumps.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/quantum_jumps.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#invariance-of-entanglement-across-the-backward-light-cone-boundary">
+   Invariance of entanglement across the backward light cone boundary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schmidt-decomposition">
+   Schmidt decomposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computing-the-observables">
+   Computing the observables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stochastic-interpretation">
+   Stochastic interpretation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#benefits-of-stochastic-interpretation">
+   Benefits of stochastic interpretation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recurrent-application">
+   Recurrent application
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tracing out the backward light cone</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#invariance-of-entanglement-across-the-backward-light-cone-boundary">
+   Invariance of entanglement across the backward light cone boundary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schmidt-decomposition">
+   Schmidt decomposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computing-the-observables">
+   Computing the observables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stochastic-interpretation">
+   Stochastic interpretation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#benefits-of-stochastic-interpretation">
+   Benefits of stochastic interpretation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recurrent-application">
+   Recurrent application
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="tracing-out-the-backward-light-cone">
+<h1>Tracing out the backward light cone<a class="headerlink" href="#tracing-out-the-backward-light-cone" title="Permalink to this headline">#</a></h1>
+<section id="invariance-of-entanglement-across-the-backward-light-cone-boundary">
+<h2>Invariance of entanglement across the backward light cone boundary<a class="headerlink" href="#invariance-of-entanglement-across-the-backward-light-cone-boundary" title="Permalink to this headline">#</a></h2>
+<p>Suppose we are interested in the dynamics only on the time interval $\left[0,T\right]$.</p>
+<p>As discussed in the previous section <a class="reference internal" href="backward_lightcone.html#backward-lightcone"><span class="std std-ref">The backward Lieb-Robinson lightcone</span></a>, we have the backward Lieb-Robinson light cone:</p>
+<figure class="align-default" id="bck-lc">
+<a class="reference internal image-reference" href="_images/outgoing_modes.png"><img alt="_images/outgoing_modes.png" src="_images/outgoing_modes.png" style="width: 50%;" /></a>
+</figure>
+<p>The region colored with red consists of modes with are irreversibly decoupled from the local interacting site.</p>
+<p>The total many-body state at time $t$ is $\left| \Psi \left(t\right) \right\rangle$.</p>
+<p>We make the following bipartition:</p>
+<p>$$
+\left| \Psi \left(t\right) \right\rangle = \sum_p c_p \left| \psi_p \left(t\right) \right\rangle_{q+inside} \otimes
+\left| \phi_p \left(t\right) \right\rangle_{outside},
+$$ (in_out_bipart)</p>
+<p>where “q+inside” refers to the modes of the open system (atom) and the bath modes inside the backward lightcone;
+“outside” refers to the bath modes outside the backward lightcone (red colored area).</p>
+<p>We can select $\left| \phi_p \left(t\right) \right\rangle_{outside}$ as orthogonal basis elements,</p>
+<p>$$
+\left\langle \phi_q \right| \left. \phi_p \right \rangle_{outside} = \delta_{qp}.
+$$</p>
+<p>The corresponding wavefunctions for the inside part $\left| \psi_p \left(t\right) \right\rangle_{q+inside}$ need not orthogonal, but can be chosen to be normalized,</p>
+<p>$$
+\left\langle \psi_p \right| \left. \psi_p \right \rangle_{q+inside} = 1.
+$$</p>
+<p>The many-body state state at a later time $\left| \Psi \left(t^{\prime}\right) \right\rangle$ is related by evolution operator,</p>
+<p>$$
+\left| \Psi \left(t^{\prime}\right) \right\rangle = \widehat{U}\left(t^{\prime}, t \right)
+\left| \Psi \left(t\right) \right\rangle.
+$$</p>
+<p>Since the outgoing (outside the backward lightcone) modes have negligible average intensity of coupling, the evolution operator has the effective bipartitioning</p>
+<p>$$
+\widehat{U}\left(t^{\prime} -t \right) = \widehat{U}<em>{q+inside}\left(t^{\prime}, t \right) \otimes \widehat{1}</em>{outside} + O\left(a_{cut}\right),
+$$</p>
+<p>that is it does not couple the outgoing mode.</p>
+<p>Therefore, we have at a  later time:</p>
+<p>$$
+\left| \Psi \left(t^\prime\right) \right\rangle = \sum_p c_p \left| \psi_p \left(t^\prime\right) \right\rangle_{q+inside} \otimes
+\left| \phi_p \left(t\right) \right\rangle_{outside} + O\left(a_{cut}\right),.
+$$ (in_out_bipart_prime)</p>
+<p>with</p>
+<p>$$
+\left|\psi_p \left(t^\prime\right) \right\rangle_{q+inside} = \widehat{U}<em>{q+inside}\left(t^{\prime}, t \right) \left| \psi_p \left(t\right) \right\rangle</em>{q+inside}.
+$$</p>
+<p>Comparing the equations <code class="xref eq docutils literal notranslate"><span class="pre">in_out_bipart</span></code> and <code class="xref eq docutils literal notranslate"><span class="pre">in_out_bipart_prime</span></code>, we see that this bipartition is invariant under the future quantum motion.</p>
+<p>The coefficients $c_p$ are time independent.</p>
+</section>
+<section id="schmidt-decomposition">
+<h2>Schmidt decomposition<a class="headerlink" href="#schmidt-decomposition" title="Permalink to this headline">#</a></h2>
+<p>We compute the density matrix of the quantum field outside the lightcone:</p>
+<p>$$
+\widehat{\rho}<em>{outside} = \textrm{Tr}</em>{q+inside}\left[\left|\Psi\left(t\right)\right\rangle\left\langle\Psi\left(t\right)\right|\right]
+$$</p>
+<p>and find its eigenvalues:</p>
+<p>$$
+\widehat{\rho}<em>{outside} \left| \phi_p \left(t\right) \right\rangle</em>{outside} = \left|c_p\right|^2 \left| \phi_p \left(t\right) \right\rangle_{outside}.
+$$</p>
+<p>The resulting $\left| \phi_p \left(t\right) \right\rangle_{outside}$ yield the bipartition of the form <code class="xref eq docutils literal notranslate"><span class="pre">in_out_bipart</span></code>, with the additional property that  $\left| \psi_p \left(t\right) \right\rangle_{q+inside}$ are also orthonormal. This is the Schmidt decomposition.</p>
+<p>One can introduce a statistical cut off $\pi_{cut}$ so that we keep only a finite number of terms in <code class="xref eq docutils literal notranslate"><span class="pre">in_out_bipart</span></code> such that</p>
+<p>$$
+\left|c_p\right|^2  &gt; \pi_{cut}.
+$$</p>
+<p>Suppose there are $m$ such terms.</p>
+</section>
+<section id="computing-the-observables">
+<h2>Computing the observables<a class="headerlink" href="#computing-the-observables" title="Permalink to this headline">#</a></h2>
+<p>Suppose we are interested in some observable $\widehat{O}<em>{q+inside} \otimes \widehat{O}</em>{outside}$, and want to compute its average $\overline{\widehat{O}<em>{q+inside} \otimes \widehat{O}</em>{outside}\left(t\right)}$ at later time moments $t^\prime\geq t$.</p>
+<p>Then we form the $m\times m$ matrix</p>
+<p>$$
+O\left(p,q\right)<em>{outside} =  \left\langle \psi_p \right| \widehat{O}</em>{outside} \left| \psi_q \right \rangle_{outside}.
+$$</p>
+<p>We find its eigenvalues</p>
+<p>$$
+\sum_{q=1}^m O\left(p,q\right)_{outside} f^{(l)}_q = O_l f^{(l)}_p.
+$$</p>
+<p>We choose a novel basis for bipartition:</p>
+<p>$$
+\left| \psi^{(O)}<em>l \right \rangle</em>{outside} = \sum_{p=1}^m f^{(l)}<em>p \left| \psi_p \right \rangle</em>{outside}.
+$$ (diagonalizing_basis)</p>
+<p>Then the average becomes</p>
+<p>$$
+\overline{\widehat{O}<em>{q+inside} \otimes \widehat{O}</em>{outside}\left(t\right)} = \sum_p \left|c_p\right|^2  \left\langle \psi_p\left(t^\prime\right) \right| \widehat{O}<em>{q+inside}\left| \psi_p \left(t^\prime\right) \right \rangle</em>{q+inside} O_p
+$$</p>
+<p>for all later time moments $t^\prime\geq t$.</p>
+</section>
+<section id="stochastic-interpretation">
+<h2>Stochastic interpretation<a class="headerlink" href="#stochastic-interpretation" title="Permalink to this headline">#</a></h2>
+<p>We can compute this average at all times $t^\prime \geq t$ via the following Monte Carlo procedure:</p>
+<ul class="simple">
+<li><p>Given the state $\left| \Psi \left(t\right) \right\rangle$ at time $t$, we select the  basis  <code class="xref eq docutils literal notranslate"><span class="pre">diagonalizing_basis</span></code></p></li>
+<li><p>We consider $\left|c_p\right|^2$ as probabilities $P\left(p\right)$ of events $p=1\ldots m$. Each event corresponds to a collapse</p></li>
+</ul>
+<p>$$
+\left| \Psi \left(t\right) \right\rangle \to \left|\psi_p \left(t\right) \right\rangle_{q+inside}.
+$$</p>
+<p>Observe that after the collapse there is no modes outside the backward light cone. So the collapse is accompanied with reduction of the Hilbert space.</p>
+<ul class="simple">
+<li><p>We sample events $p$ according to their probability $P\left(p\right)$ via Monte Carlo algorithm.</p></li>
+<li><p>As a result, we get samples of $\left|\psi_{p_s} \left(t\right) \right\rangle_{q+inside}$, $s=1\ldots M$, where $M$ is the number of samples.</p></li>
+<li><p>Each sample is propagated to later times via</p></li>
+</ul>
+<p>$$
+\left|\psi_{p_s} \left(t^\prime\right) \right\rangle_{q+inside} = \widehat{U}<em>{q+inside}\left(t^{\prime}, t \right)  \left|\psi</em>{p_s} \left(t\right) \right\rangle_{q+inside}
+$$ (between_jumps)</p>
+<ul class="simple">
+<li><p>The sample average is computed as</p></li>
+</ul>
+<p>$$
+A = \frac{1}{M} \sum_{s=1}^{M} \left\langle \psi_{p_s} \right| \widehat{O}<em>{q+inside} \left| \psi</em>{p_s} \right \rangle_{q+inside} O_{p_s}
+$$</p>
+</section>
+<section id="benefits-of-stochastic-interpretation">
+<h2>Benefits of stochastic interpretation<a class="headerlink" href="#benefits-of-stochastic-interpretation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>We avoid density matrices. The latter would be obtained if we were to trace out the modes outside the backward light cone. Instead, we stay on the level of wavefunctions.</p></li>
+<li><p>The proposed algorithm is massively parallel: each sample $\left|\psi_{p_s} \left(t^\prime\right) \right\rangle_{q+inside}$ is propagated independently. Different samples  can be computed in separate threads, processes, or even on separate servers.</p></li>
+</ul>
+</section>
+<section id="recurrent-application">
+<h2>Recurrent application<a class="headerlink" href="#recurrent-application" title="Permalink to this headline">#</a></h2>
+<p>As we see from the figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">bck_lc</span></code>, the backward light cone shrinks as we move forward in time: new modes fall out of the light cone interior.</p>
+<p>Then the above procedure can be applied recurrently: we get a sequence of quantum jumps:</p>
+<p>$$
+\ldots \to \left|\psi_{p_1} \left(t_1\right) \right\rangle_{q+inside1} \to \left|\psi_{p_2} \left(t_2\right) \right\rangle_{q+inside2} \to \left|\psi_{p_3} \left(t_3\right) \right\rangle_{q+inside3} \to \ldots<br />
+$$</p>
+<p>at a sequence of times $\ldots, t_1, t_2, t_3 \ldots$. Between the quantum jumps the samples are propagated unitarily according to <span class="xref std std-ref">between_jumps</span>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="backward_lightcone.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">The backward Lieb-Robinson lightcone</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Evgeny A. Polyakov<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

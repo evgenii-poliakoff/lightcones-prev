@@ -50,8 +50,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="The a priori estimate of the Lieb-Robinson lightcone" href="lightcone_apriori_estimate.html" />
@@ -139,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="backward_lightcone.html">
    The backward Lieb-Robinson lightcone
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="quantum_jumps.html">
+   Tracing out the backward light cone
   </a>
  </li>
 </ul>
@@ -411,11 +414,10 @@ title="Print to PDF"
 <p>In this project we propose the way out of this difficulty. We propose to consider the Lieb-Robinson lightcone as a real-time alterantive to the equilibrium Gibbs distribution.  The Lieb-Robinson lightcone always exists in the condensed matter.</p>
 <section id="example-interaction-quench-for-qubit-atom-in-the-waveguide">
 <h2>Example: Interaction quench for qubit (atom) in the waveguide<a class="headerlink" href="#example-interaction-quench-for-qubit-atom-in-the-waveguide" title="Permalink to this headline">#</a></h2>
-<p>Let us illustrate it on a specific example. Suppose we have a qubit (two-level atom) with a transition frequency <span class="math notranslate nohighlight">\(E_{at}\)</span>. We suppose there is a laser driving <span class="math notranslate nohighlight">\(f(t) = 0.1 \cos(t)\)</span> acting on the qubit. As a result, it fluoresces into the waveguide. The latter is represented as a bosonic chain with constant hoppings <span class="math notranslate nohighlight">\(h\)</span> and on-site energies <span class="math notranslate nohighlight">\(\varepsilon\)</span>. The total Hamiltonian is:</p>
-<div class="math notranslate nohighlight" id="equation-quench-hamiltonian">
-<span class="eqno">(5)<a class="headerlink" href="#equation-quench-hamiltonian" title="Permalink to this equation">#</a></span>\[
-H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0} + h a^{\dagger}_{0} \sigma_{-} + \sum\limits_{i=0}^{\infty} (\varepsilon a^{\dagger}_{i} a_{i} + h a^{\dagger}_{i+1} a_{i} + h a^{\dagger}_{i} a_{i+1})  
-\]</div>
+<p>Let us illustrate it on a specific example. Suppose we have a qubit (two-level atom) with a transition frequency $E_{at}$. We suppose there is a laser driving $f(t) = 0.1 \cos(t)$ acting on the qubit. As a result, it fluoresces into the waveguide. The latter is represented as a bosonic chain with constant hoppings $h$ and on-site energies $\varepsilon$. The total Hamiltonian is:</p>
+<p>$$
+H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0} + h a^{\dagger}<em>{0} \sigma</em>{-} + \sum\limits_{i=0}^{\infty} (\varepsilon a^{\dagger}<em>{i} a</em>{i} + h a^{\dagger}<em>{i+1} a</em>{i} + h a^{\dagger}<em>{i} a</em>{i+1})<br />
+$$ (quench_hamiltonian)</p>
 <p>Let us program this Hamiltonian:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -442,7 +444,7 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 </div>
 </div>
 </div>
-<p>Here <code> b_hat[0] </code> and <code> b_hat_dag[0] </code> correspond to <span class="math notranslate nohighlight">\(\sigma_{-}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{+}\)</span> of the qubit degree of freedom:</p>
+<p>Here <code> b_hat[0] </code> and <code> b_hat_dag[0] </code> correspond to $\sigma_{-}$ and $\sigma_{+}$ of the qubit degree of freedom:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma_m</span> <span class="o">=</span> <span class="n">b_hat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -452,7 +454,7 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 </div>
 </div>
 </div>
-<p>Also, <code> b_hat[i + 1] </code> and <code> b_hat_dag[i + 1] </code> correspond to <span class="math notranslate nohighlight">\(a_{i}\)</span> and <span class="math notranslate nohighlight">\(a^{\dagger}_{i}\)</span> of the chain:</p>
+<p>Also, <code> b_hat[i + 1] </code> and <code> b_hat_dag[i + 1] </code> correspond to $a_{i}$ and $a^{\dagger}_{i}$ of the chain:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_hat</span> <span class="o">=</span> <span class="n">b_hat</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
@@ -491,12 +493,11 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 </div>
 </div>
 </div>
-<p>Then we suddenly turn on the interaction due to <span class="math notranslate nohighlight">\(H(t)\)</span>. As the result, the disturbance starts to propagate gradually along the waveguide. We can visualize it by solving the nonstationary Schrodinger equation</p>
-<div class="math notranslate nohighlight">
-\[
-    i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}\left(t\right)\Psi\left(t\right)
-\]</div>
-<p>and computing the occupations <code> ni[j, i] </code> of the  waveguide sites, <code> ni[j,i] </code> = <span class="math notranslate nohighlight">\( n_j\left(t_i\right)=\left\langle\Psi\left(t_i\right)|a_j^{\dagger} a_j|\Psi\left(t_i\right)\right\rangle\)</span>:</p>
+<p>Then we suddenly turn on the interaction due to $H(t)$. As the result, the disturbance starts to propagate gradually along the waveguide. We can visualize it by solving the nonstationary Schrodinger equation</p>
+<p>$$
+i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}\left(t\right)\Psi\left(t\right)
+$$</p>
+<p>and computing the occupations <code> ni[j, i] </code> of the  waveguide sites, <code> ni[j,i] </code> = $ n_j\left(t_i\right)=\left\langle\Psi\left(t_i\right)|a_j^{\dagger} a_j|\Psi\left(t_i\right)\right\rangle$:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tools</span>
@@ -535,33 +536,29 @@ H\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0
 <img alt="_images/lightcone_13_0.png" src="_images/lightcone_13_0.png" />
 </div>
 </div>
-<p>We observe the lightcone-like spread of disturbance from the site <span class="math notranslate nohighlight">\(0\)</span> to which the open system is connected.</p>
+<p>We observe the lightcone-like spread of disturbance from the site $0$ to which the open system is connected.</p>
 </section>
 <section id="lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom">
 <span id="inside-lightcone"></span><h2>Lightcone allows us to identify the relevant and irrelevant degrees of freedom<a class="headerlink" href="#lightcone-allows-us-to-identify-the-relevant-and-irrelevant-degrees-of-freedom" title="Permalink to this headline">#</a></h2>
-<p>The domain outside the lightcone consists of degrees of freedom which will become significantly excited only in the future. More specifically, for each chain site <span class="math notranslate nohighlight">\(i\)</span> there is a time moment <span class="math notranslate nohighlight">\(t_i\)</span> after which it will become statistically significant for the evolution. We may define a piece-wise continuous function <span class="math notranslate nohighlight">\(m\left(t\right)\)</span> which shows how many sites have coupled to the evolution by the time <span class="math notranslate nohighlight">\(t\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-m(t) = \max\{t_i : t_i &lt;= t\}
-\]</div>
-<p>Then when solving the Schrodinger equation, we can include only a finite number <span class="math notranslate nohighlight">\(m\left(t\right)\)</span> of sites into the Hamiltonian:</p>
-<div class="math notranslate nohighlight">
-\[
-    i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}_m\left(t\right)\Psi\left(t\right)
-\]</div>
+<p>The domain outside the lightcone consists of degrees of freedom which will become significantly excited only in the future. More specifically, for each chain site $i$ there is a time moment $t_i$ after which it will become statistically significant for the evolution. We may define a piece-wise continuous function $m\left(t\right)$ which shows how many sites have coupled to the evolution by the time $t$:</p>
+<p>$$
+m(t) = \max{t_i : t_i &lt;= t}
+$$</p>
+<p>Then when solving the Schrodinger equation, we can include only a finite number $m\left(t\right)$ of sites into the Hamiltonian:</p>
+<p>$$
+i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}_m\left(t\right)\Psi\left(t\right)
+$$</p>
 <p>with</p>
-<div class="math notranslate nohighlight" id="equation-lightcone-restricted-ham">
-<span class="eqno">(6)<a class="headerlink" href="#equation-lightcone-restricted-ham" title="Permalink to this equation">#</a></span>\[
-H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0} + h a^{\dagger}_{0} \sigma_{-} + \sum\limits_{i=0}^{m\left(t\right)} (\varepsilon a^{\dagger}_{i} a_{i} + h a^{\dagger}_{i+1} a_{i} + h a^{\dagger}_{i} a_{i+1})  
-\]</div>
+<p>$$
+H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_{0} + h a^{\dagger}<em>{0} \sigma</em>{-} + \sum\limits_{i=0}^{m\left(t\right)} (\varepsilon a^{\dagger}<em>{i} a</em>{i} + h a^{\dagger}<em>{i+1} a</em>{i} + h a^{\dagger}<em>{i} a</em>{i+1})<br />
+$$ (lightcone_restricted_ham)</p>
 </section>
 <section id="find-the-time-of-a-new-incoming-chain-site">
 <h2>Find the time of a new incoming chain site<a class="headerlink" href="#find-the-time-of-a-new-incoming-chain-site" title="Permalink to this headline">#</a></h2>
-<p>We can find the time <span class="math notranslate nohighlight">\(t_i\)</span> using the results of the preceding computation. We introduce a treshold of significance <span class="math notranslate nohighlight">\(a_{cut}\)</span>. Then the time <span class="math notranslate nohighlight">\(t_i\)</span> is defined as a first time when the occupation of the site <span class="math notranslate nohighlight">\(i\)</span> exceeds the  threshold,</p>
-<div class="math notranslate nohighlight">
-\[
-    n_i\left(t\right) &gt; a_{cut}  
-\]</div>
+<p>We can find the time $t_i$ using the results of the preceding computation. We introduce a treshold of significance $a_{cut}$. Then the time $t_i$ is defined as a first time when the occupation of the site $i$ exceeds the  threshold,</p>
+<p>$$
+n_i\left(t\right) &gt; a_{cut}<br />
+$$</p>
 <p>Here is the program:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,14 +588,14 @@ H_m\left(t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} a_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f701f0a7e80&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb0e8683e80&gt;]
 </pre></div>
 </div>
 <img alt="_images/lightcone_17_1.png" src="_images/lightcone_17_1.png" />
 </div>
 </div>
 <p>Now let us solve the Schrodinger equation with the full number of modes and compute the
-occupation of the qubit: <code> nq[i] </code>=<span class="math notranslate nohighlight">\(\left\langle\Psi\left(t_i\right)|\sigma_+ \sigma_-|\Psi\left(t_i\right)\right\rangle\)</span></p>
+occupation of the qubit: <code> nq[i] </code>=$\left\langle\Psi\left(t_i\right)|\sigma_+ \sigma_-|\Psi\left(t_i\right)\right\rangle$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>
@@ -619,7 +616,7 @@ occupation of the qubit: <code> nq[i] </code>=<span class="math notranslate nohi
 <img alt="_images/lightcone_19_1.png" src="_images/lightcone_19_1.png" />
 </div>
 </div>
-<p>Then let us solve the Schrodinger equation but now keeping only <span class="math notranslate nohighlight">\(m\left(t\right)\)</span> modes:</p>
+<p>Then let us solve the Schrodinger equation but now keeping only $m\left(t\right)$ modes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nq2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>

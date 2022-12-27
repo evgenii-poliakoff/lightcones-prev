@@ -50,10 +50,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tracing out the backward light cone" href="quantum_jumps.html" />
     <link rel="prev" title="Lightcone structure of the many-body wave function" href="lightcone_interaction_pic.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -138,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    The backward Lieb-Robinson lightcone
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="quantum_jumps.html">
+   Tracing out the backward light cone
   </a>
  </li>
 </ul>
@@ -416,140 +420,119 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="the-backward-lieb-robinson-lightcone">
-<h1>The backward Lieb-Robinson lightcone<a class="headerlink" href="#the-backward-lieb-robinson-lightcone" title="Permalink to this headline">#</a></h1>
+<span id="backward-lightcone"></span><h1>The backward Lieb-Robinson lightcone<a class="headerlink" href="#the-backward-lieb-robinson-lightcone" title="Permalink to this headline">#</a></h1>
 <section id="time-reversal-symmetry">
 <h2>Time-reversal symmetry<a class="headerlink" href="#time-reversal-symmetry" title="Permalink to this headline">#</a></h2>
-<p>The quantum mechanics has the time-reversal symmetry. Namely, consider some interval <span class="math notranslate nohighlight">\(\left[0,T\right]\)</span>. Suppose at <span class="math notranslate nohighlight">\(t=0\)</span>
-we are given initial wavefunction <span class="math notranslate nohighlight">\(\Psi\left(0\right)\)</span>.</p>
+<p>The quantum mechanics has the time-reversal symmetry. Namely, consider some interval $\left[0,T\right]$. Suppose at $t=0$
+we are given initial wavefunction $\Psi\left(0\right)$.</p>
 <p>We can solve the non-stationary Schrodinger equation forward in time</p>
-<div class="math notranslate nohighlight" id="equation-forward-time-eq">
-<span class="eqno">(18)<a class="headerlink" href="#equation-forward-time-eq" title="Permalink to this equation">#</a></span>\[
-    i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}\left(t\right)\Psi\left(t\right)
-\]</div>
-<p>and obtain the final state <span class="math notranslate nohighlight">\(\Psi\left(T\right)\)</span>.</p>
+<p>$$
+i\frac{\partial \Psi\left(t\right)}{\partial t} = \widehat{H}\left(t\right)\Psi\left(t\right)
+$$ (forward_time_eq)</p>
+<p>and obtain the final state $\Psi\left(T\right)$.</p>
 <p>The time-reversal symmetry refers to the fact that backward-evolving wavefunction</p>
-<div class="math notranslate nohighlight" id="equation-backward-wavefunction">
-<span class="eqno">(19)<a class="headerlink" href="#equation-backward-wavefunction" title="Permalink to this equation">#</a></span>\[
-    \mathcal{T}\left[\Psi\right]\left(t\right) = \Psi^{*}\left(T-t\right)
-\]</div>
-<p>also satisfies the forward time Schoridinger equation <a class="reference internal" href="#equation-forward-time-eq">(18)</a>, with the time-reversed Hamiltonian:</p>
-<div class="math notranslate nohighlight">
-\[
-    i\frac{\partial \mathcal{T}\left[\Psi\right]\left(t\right)}{\partial t} = \widehat{H}^{\ast} \left(T - t\right) \mathcal{T}\left[\Psi\right]\left(t\right)
-\]</div>
-<p>Here <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> is called the time reversal operator, <span class="math notranslate nohighlight">\(\mathcal{T^2}=1\)</span>. It has obvious properties:</p>
-<div class="math notranslate nohighlight" id="equation-t-prop-1">
-<span class="eqno">(20)<a class="headerlink" href="#equation-t-prop-1" title="Permalink to this equation">#</a></span>\[
-    \mathcal{T}\left[\alpha\left(t\right) \Psi\right]\left(t\right) = \alpha^{\ast}\left(T-t\right)\mathcal{T}\left[\Psi\right]\left(t\right) 
-\]</div>
-<p>for arbitrary scalar <span class="math notranslate nohighlight">\(\alpha\left(t\right)\)</span>, and</p>
-<div class="math notranslate nohighlight" id="equation-t-prop-2">
-<span class="eqno">(21)<a class="headerlink" href="#equation-t-prop-2" title="Permalink to this equation">#</a></span>\[
-    \mathcal{T}\left[\widehat{A}\left(t\right) \Psi\right]\left(t\right) = \widehat{A}^{\ast}\left(T-t\right)\mathcal{T}\left[\Psi\right]\left(t\right) 
-\]</div>
-<p>for arbitrary operator <span class="math notranslate nohighlight">\(\widehat{A}\left(t\right)\)</span>.</p>
+<p>$$
+\mathcal{T}\left[\Psi\right]\left(t\right) = \Psi^{*}\left(T-t\right)
+$$ (backward_wavefunction)</p>
+<p>also satisfies the forward time Schoridinger equation <code class="xref eq docutils literal notranslate"><span class="pre">forward_time_eq</span></code>, with the time-reversed Hamiltonian:</p>
+<p>$$
+i\frac{\partial \mathcal{T}\left[\Psi\right]\left(t\right)}{\partial t} = \widehat{H}^{\ast} \left(T - t\right) \mathcal{T}\left[\Psi\right]\left(t\right)
+$$</p>
+<p>Here $\mathcal{T}$ is called the time reversal operator, $\mathcal{T^2}=1$. It has obvious properties:</p>
+<p>$$
+\mathcal{T}\left[\alpha\left(t\right) \Psi\right]\left(t\right) = \alpha^{\ast}\left(T-t\right)\mathcal{T}\left[\Psi\right]\left(t\right)
+$$ (T_prop_1)</p>
+<p>for arbitrary scalar $\alpha\left(t\right)$, and</p>
+<p>$$
+\mathcal{T}\left[\widehat{A}\left(t\right) \Psi\right]\left(t\right) = \widehat{A}^{\ast}\left(T-t\right)\mathcal{T}\left[\Psi\right]\left(t\right)
+$$ (T_prop_2)</p>
+<p>for arbitrary operator $\widehat{A}\left(t\right)$.</p>
 <p>For our illustrative example,</p>
-<div class="math notranslate nohighlight" id="equation-h-reversed">
-<span class="eqno">(22)<a class="headerlink" href="#equation-h-reversed" title="Permalink to this equation">#</a></span>\[
-   \widehat{H}^{\ast} \left(T - t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} a_{0} + h a^{\dagger}_{0} \sigma_{-} + \sum\limits_{i=0}^{\infty} (\varepsilon a^{\dagger}_{i} a_{i} + h a^{\dagger}_{i+1} a_{i} + h a^{\dagger}_{i} a_{i+1})  
-\]</div>
+<p>$$
+\widehat{H}^{\ast} \left(T - t\right) = E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} a_{0} + h a^{\dagger}<em>{0} \sigma</em>{-} + \sum\limits_{i=0}^{\infty} (\varepsilon a^{\dagger}<em>{i} a</em>{i} + h a^{\dagger}<em>{i+1} a</em>{i} + h a^{\dagger}<em>{i} a</em>{i+1})<br />
+$$ (H_reversed)</p>
 </section>
 <section id="time-reversal-in-the-interaction-picture">
 <h2>Time-reversal in the interaction picture<a class="headerlink" href="#time-reversal-in-the-interaction-picture" title="Permalink to this headline">#</a></h2>
-<p>In the interaction picture with respect to the free bath <a class="reference internal" href="lightcone_interaction_pic.html#equation-free-bath">(15)</a> the time-reversal symmetry still holds:</p>
-<div class="math notranslate nohighlight" id="equation-backward-interaction-wavefunc">
-<span class="eqno">(23)<a class="headerlink" href="#equation-backward-interaction-wavefunc" title="Permalink to this equation">#</a></span>\[\begin{split}
-    \left|\Psi_{int}^{\ast}\left(T-t\right)\right\rangle = \exp\left(-i \left(T-t\right)\right) \left|\Psi^{\ast}\left(T-t\right)\right\rangle \\
-    = \mathcal{T}\left[\Psi_{int}\right]\left(t\right),
-\end{split}\]</div>
-<p>according to the properties <a class="reference internal" href="#equation-t-prop-1">(20)</a> and <a class="reference internal" href="#equation-t-prop-2">(21)</a>.</p>
+<p>In the interaction picture with respect to the free bath <code class="xref eq docutils literal notranslate"><span class="pre">free_bath</span></code> the time-reversal symmetry still holds:</p>
+<p>$$
+\left|\Psi_{int}^{\ast}\left(T-t\right)\right\rangle = \exp\left(-i \left(T-t\right)\right) \left|\Psi^{\ast}\left(T-t\right)\right\rangle \
+= \mathcal{T}\left[\Psi_{int}\right]\left(t\right),
+$$ (backward_interaction_wavefunc)</p>
+<p>according to the properties <code class="xref eq docutils literal notranslate"><span class="pre">T_prop_1</span></code> and <code class="xref eq docutils literal notranslate"><span class="pre">T_prop_2</span></code>.</p>
 <p>The time-reversed interaction-picture Hamiltonian is</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-    \mathcal{T} H_{int}\left(t\right) \mathcal{T} \\= E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} a_{0}^{\ast}\left(T-t\right) + h a^{\dagger\ast}_{0}\left(T-t\right) \sigma_{-} \\
-    = E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} \sum_{k=0}^\infty \phi_k^{\ast}\left(T-t\right) a_k + h \sum_{k=0}^\infty \phi_k\left(T-t\right) a_k^{\dagger} \sigma_{-},
-\end{split}\]</div>
-<p>where we have employed <a class="reference internal" href="lightcone_apriori_estimate.html#equation-a-0-int">(12)</a>.</p>
+<p>$$
+\mathcal{T} H_{int}\left(t\right) \mathcal{T} \= E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} a_{0}^{\ast}\left(T-t\right) + h a^{\dagger\ast}<em>{0}\left(T-t\right) \sigma</em>{-} \
+= E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} \sum_{k=0}^\infty \phi_k^{\ast}\left(T-t\right) a_k + h \sum_{k=0}^\infty \phi_k\left(T-t\right) a_k^{\dagger} \sigma_{-},
+$$</p>
+<p>where we have employed <code class="xref eq docutils literal notranslate"><span class="pre">a_0_int</span></code>.</p>
 </section>
 <section id="implications-for-the-lieb-robinson-lightcone">
 <h2>Implications for the Lieb-Robinson lightcone<a class="headerlink" href="#implications-for-the-lieb-robinson-lightcone" title="Permalink to this headline">#</a></h2>
 <p>The time reversal symmetry has deep implications for the Lieb-Robinson lightcone.</p>
-<p>Consider the final joint wavefunction of the atom and the chain <span class="math notranslate nohighlight">\(\left|\Psi\left(T\right)\right\rangle\)</span>. It is some correlated many-body state.</p>
-<p>Now let us evolve it backwards in time. We apply the time-reversal <a class="reference internal" href="#equation-backward-wavefunction">(19)</a>. The resulting initial condition is</p>
-<div class="math notranslate nohighlight">
-\[
-    \Psi_{-}\left(0\right) = \Psi^{*}\left(T\right)
-\]</div>
+<p>Consider the final joint wavefunction of the atom and the chain $\left|\Psi\left(T\right)\right\rangle$. It is some correlated many-body state.</p>
+<p>Now let us evolve it backwards in time. We apply the time-reversal <code class="xref eq docutils literal notranslate"><span class="pre">backward_wavefunction</span></code>. The resulting initial condition is</p>
+<p>$$
+\Psi_{-}\left(0\right) = \Psi^{*}\left(T\right)
+$$</p>
 <p>Then the forward evolution in the Schrodinger picture,</p>
-<div class="math notranslate nohighlight" id="equation-fwd1">
-<span class="eqno">(24)<a class="headerlink" href="#equation-fwd1" title="Permalink to this equation">#</a></span>\[
-    i\partial_t \Psi_{-}\left(t\right) = H^{\ast}\left(T-t\right) \Psi_{-}\left(0\right),
-\]</div>
-<p>yields  <span class="math notranslate nohighlight">\(\Psi_{-}\left(T\right)=\Psi^{\ast}\left(0\right)\)</span>.</p>
+<p>$$
+i\partial_t \Psi_{-}\left(t\right) = H^{\ast}\left(T-t\right) \Psi_{-}\left(0\right),
+$$ (fwd1)</p>
+<p>yields  $\Psi_{-}\left(T\right)=\Psi^{\ast}\left(0\right)$.</p>
 <p>However perform the evolution in the interaction picture,</p>
-<div class="math notranslate nohighlight">
-\[
-    i\partial_t \Psi_{int-}\left(t\right) = H^{\prime}_{int}\left(t\right) \Psi_{int-}\left(t\right),
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(\Psi_{int-}\left(0\right) = \Psi_{-}\left(0\right)\)</span>, and</p>
-<div class="math notranslate nohighlight">
-\[
-    H^{\prime}_{int}\left(t\right)= E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} a_{0}\left(t\right)  +  h a^{\dagger}_{0}\left(t\right) \sigma_{-} 
-\]</div>
+<p>$$
+i\partial_t \Psi_{int-}\left(t\right) = H^{\prime}<em>{int}\left(t\right) \Psi</em>{int-}\left(t\right),
+$$</p>
+<p>where $\Psi_{int-}\left(0\right) = \Psi_{-}\left(0\right)$, and</p>
+<p>$$
+H^{\prime}<em>{int}\left(t\right)= E</em>{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} a_{0}\left(t\right)  +  h a^{\dagger}<em>{0}\left(t\right) \sigma</em>{-}
+$$</p>
 <p>We restrict this Hamiltonian to the a priory lightcone estimate:</p>
-<div class="math notranslate nohighlight">
-\[
-    H^{\prime}_{int}\left(t\right) \to H_{lc}\left(t\right)= E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} \sum_{k=0}^{m\left(t\right)} \phi_k\left(t\right) a_k + h \sum_{k=0}^{m\left(t\right)} \phi_k^{\ast}\left(t\right) a_k^{\dagger}  \sigma_{-}, 
-\]</div>
+<p>$$
+H^{\prime}<em>{int}\left(t\right) \to H</em>{lc}\left(t\right)= E_{at}  \sigma_{z} + \sigma_{x} \cdot f^{\ast}(T-t) + h \sigma_{+} \sum_{k=0}^{m\left(t\right)} \phi_k\left(t\right) a_k + h \sum_{k=0}^{m\left(t\right)} \phi_k^{\ast}\left(t\right) a_k^{\dagger}  \sigma_{-},
+$$</p>
 <p>so that the evolution is</p>
-<div class="math notranslate nohighlight" id="equation-lc1">
-<span class="eqno">(25)<a class="headerlink" href="#equation-lc1" title="Permalink to this equation">#</a></span>\[
-     i\partial_t \Psi_{int-}\left(t\right) = H_{lc}\left(t\right) \Psi_{int-}\left(t\right),
-\]</div>
+<p>$$
+i\partial_t \Psi_{int-}\left(t\right) = H_{lc}\left(t\right) \Psi_{int-}\left(t\right),
+$$ (lc1)</p>
 <p>The final value is</p>
-<div class="math notranslate nohighlight" id="equation-lc2">
-<span class="eqno">(26)<a class="headerlink" href="#equation-lc2" title="Permalink to this equation">#</a></span>\[
- \left|\Psi_{int-}\left(T\right)\right\rangle = \exp\left(i T \widehat{H}_{b} \right)\left|\Psi^{\ast}\left(0\right)\right\rangle
-\]</div>
-<p>Now we once more apply the time reversal symmetry to <a class="reference internal" href="#equation-lc1">(25)</a> and <a class="reference internal" href="#equation-lc2">(26)</a>.</p>
+<p>$$
+\left|\Psi_{int-}\left(T\right)\right\rangle = \exp\left(i T \widehat{H}_{b} \right)\left|\Psi^{\ast}\left(0\right)\right\rangle
+$$ (lc2)</p>
+<p>Now we once more apply the time reversal symmetry to <code class="xref eq docutils literal notranslate"><span class="pre">lc1</span></code> and <code class="xref eq docutils literal notranslate"><span class="pre">lc2</span></code>.</p>
 <p>The initial condition becomes</p>
-<div class="math notranslate nohighlight">
-\[
-    \left|\Psi^{\prime}\left(0\right)\right\rangle = \exp\left(-i T \widehat{H}_{b} \right)\left|\Psi\left(0\right)\right\rangle
-        = \exp\left(-i T \widehat{H}_{b} \right)\left|\Psi_{int}\left(0\right)\right\rangle,
-\]</div>
+<p>$$
+\left|\Psi^{\prime}\left(0\right)\right\rangle = \exp\left(-i T \widehat{H}<em>{b} \right)\left|\Psi\left(0\right)\right\rangle
+= \exp\left(-i T \widehat{H}</em>{b} \right)\left|\Psi_{int}\left(0\right)\right\rangle,
+$$</p>
 <p>with the forward evolution under the Hamiltonian</p>
-<div class="math notranslate nohighlight" id="equation-lc3">
-<span class="eqno">(27)<a class="headerlink" href="#equation-lc3" title="Permalink to this equation">#</a></span>\[
-    \mathcal{T}H_{lc}\left(t\right)\mathcal{T} = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} \sum_{k=0}^{m\left(T-t\right)} \phi^{\ast}_k\left(T-t\right) a_k + h \sum_{k=0}^{m\left(T-t\right)} \phi_k\left(T-t\right) a_k^{\dagger}  \sigma_{-},
-\]</div>
-<div class="math notranslate nohighlight" id="equation-lc4">
-<span class="eqno">(28)<a class="headerlink" href="#equation-lc4" title="Permalink to this equation">#</a></span>\[
- i\partial_t \Psi^{\prime}\left(t\right) = \mathcal{T}H_{lc}\left(t\right)\mathcal{T} \Psi^{\prime}\left(t\right),
-\]</div>
+<p>$$
+\mathcal{T}H_{lc}\left(t\right)\mathcal{T} = E_{at}  \sigma_{z} + \sigma_{x} \cdot f(t) + h \sigma_{+} \sum_{k=0}^{m\left(T-t\right)} \phi^{\ast}<em>k\left(T-t\right) a_k + h \sum</em>{k=0}^{m\left(T-t\right)} \phi_k\left(T-t\right) a_k^{\dagger}  \sigma_{-},
+$$ (lc3)</p>
+<p>$$
+i\partial_t \Psi^{\prime}\left(t\right) = \mathcal{T}H_{lc}\left(t\right)\mathcal{T} \Psi^{\prime}\left(t\right),
+$$ (lc4)</p>
 <p>This evolution yields</p>
-<div class="math notranslate nohighlight" id="equation-lc5">
-<span class="eqno">(29)<a class="headerlink" href="#equation-lc5" title="Permalink to this equation">#</a></span>\[
-    \Psi^{\prime}\left(T\right) = \Psi^{\ast}_{int -}\left(0\right)= \Psi^{\ast}_{-}\left(0\right) = \Psi\left(T\right) = \exp\left(-i T \widehat{H}_{b} \right) \Psi_{int}\left(T\right).
-\]</div>
+<p>$$
+\Psi^{\prime}\left(T\right) = \Psi^{\ast}<em>{int -}\left(0\right)= \Psi^{\ast}</em>{-}\left(0\right) = \Psi\left(T\right) = \exp\left(-i T \widehat{H}<em>{b} \right) \Psi</em>{int}\left(T\right).
+$$ (lc5)</p>
 </section>
 <section id="interpretation-of-the-result-the-backward-lightcone">
 <h2>Interpretation of the result: the backward lightcone<a class="headerlink" href="#interpretation-of-the-result-the-backward-lightcone" title="Permalink to this headline">#</a></h2>
-<p>The evolution <a class="reference internal" href="#equation-lc3">(27)</a>-<a class="reference internal" href="#equation-lc4">(28)</a>-<a class="reference internal" href="#equation-lc5">(29)</a> can be interpreted in the following way.</p>
-<p>Given the initial condition <span class="math notranslate nohighlight">\(\Psi\left(0\right)\)</span>,  first we rotate to some other frame via one-particle transform</p>
-<div class="math notranslate nohighlight" id="equation-rotated-frame">
-<span class="eqno">(30)<a class="headerlink" href="#equation-rotated-frame" title="Permalink to this equation">#</a></span>\[
-    \widehat{U}_{back} = \exp\left(-i T \widehat{H}_{b}\right).
-\]</div>
+<p>The evolution <code class="xref eq docutils literal notranslate"><span class="pre">lc3</span></code>-<code class="xref eq docutils literal notranslate"><span class="pre">lc4</span></code>-<code class="xref eq docutils literal notranslate"><span class="pre">lc5</span></code> can be interpreted in the following way.</p>
+<p>Given the initial condition $\Psi\left(0\right)$,  first we rotate to some other frame via one-particle transform</p>
+<p>$$
+\widehat{U}<em>{back} = \exp\left(-i T \widehat{H}</em>{b}\right).
+$$ (rotated_frame)</p>
 <p>In this new frame the initial condition becomes</p>
-<div class="math notranslate nohighlight">
-\[
-    \left|\Psi^{\prime}\left(0\right)\right\rangle = \exp\left(-i T \widehat{H}_{b} \right)\left|\Psi\left(0\right)\right\rangle.
-\]</div>
-<p>The beautifull property of this frame is that the sites of the chain (different from the sites in the original spatial frame!) decouple one-by-one from the evolution since the function <span class="math notranslate nohighlight">\(m\left(T-t\right)\)</span> is a <em>decreasing</em> function.</p>
+<p>$$
+\left|\Psi^{\prime}\left(0\right)\right\rangle = \exp\left(-i T \widehat{H}_{b} \right)\left|\Psi\left(0\right)\right\rangle.
+$$</p>
+<p>The beautifull property of this frame is that the sites of the chain (different from the sites in the original spatial frame!) decouple one-by-one from the evolution since the function $m\left(T-t\right)$ is a <em>decreasing</em> function.</p>
 <p>Therefore, by rotating to this frame, we were able to restrict our Hamiltonian to the <em>backward</em> Lieb-Robinson lightcone:</p>
 <a class="reference internal image-reference" href="_images/backward_lightcone.png"><img alt="_images/backward_lightcone.png" src="_images/backward_lightcone.png" style="width: 50%;" /></a>
-<p>As the evolution time <span class="math notranslate nohighlight">\(\tau\)</span> approaches the final time <span class="math notranslate nohighlight">\(T\)</span>, fewer and fewer modes have non-negligible average intensity of interactions.</p>
+<p>As the evolution time $\tau$ approaches the final time $T$, fewer and fewer modes have non-negligible average intensity of interactions.</p>
 <p>We expect that the solution of the Schrodinger equation inside the backward lightcone should reproduce the exact results. Let us test this!</p>
 <p>First solve the full problem (with all sites):</p>
 <div class="cell docutils container">
@@ -699,7 +682,7 @@ we are given initial wavefunction <span class="math notranslate nohighlight">\(\
 <p>We see that both the dynamics of the qubit, and of the chain sites, agree with the numerically exact result.
 Therefore, the backward lightcone is a structure of the whole many-body wavefunction, to the leading order of statistical significance, as in the following picture:</p>
 <a class="reference internal image-reference" href="_images/backward_lightcone_wavefunction.png"><img alt="_images/backward_lightcone_wavefunction.png" src="_images/backward_lightcone_wavefunction.png" style="width: 80%;" /></a>
-<p>Here primes denote the rotated frame, <a class="reference internal" href="#equation-rotated-frame">(30)</a></p>
+<p>Here primes denote the rotated frame, <code class="xref eq docutils literal notranslate"><span class="pre">rotated_frame</span></code></p>
 </section>
 </section>
 
@@ -736,6 +719,13 @@ Therefore, the backward lightcone is a structure of the whole many-body wavefunc
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Lightcone structure of the many-body wave function</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="quantum_jumps.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tracing out the backward light cone</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
